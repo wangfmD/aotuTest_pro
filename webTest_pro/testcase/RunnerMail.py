@@ -7,6 +7,7 @@ __mtime__ = "2016/10/26"
 import os
 import smtplib
 import sys
+import time
 import unittest
 from HTMLTestRunner import HTMLTestRunner
 from email import encoders
@@ -14,8 +15,6 @@ from email.header import Header
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
-import time
 
 reload(sys)
 
@@ -48,7 +47,7 @@ def sendReport(file_new):
     msg = MIMEText(mail_body, 'html', 'utf-8')
     msg['Subject'] = Header('自动化测试报告', 'utf-8')
     msg['From'] = 'devops@3bu.cn'  # 发件地址
-    msg['To'] = 'wangfm@3bu.cn'  # 收件人地址，多人以分号分隔
+    msg['To'] = 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn;'  # 收件人地址，多人以分号分隔
 
     smtp = smtplib.SMTP('smtp.exmail.qq.com')
     smtp.login('devops@3bu.cn', 'Xungejiaoyu@2015')  # 登录邮箱的账户和密码
@@ -70,7 +69,8 @@ def sendReportWithAtt(attachment):
 
     smtpserver = 'smtp.exmail.qq.com'
     sender = 'devops@3bu.cn'  # 发件地址
-    receiver = 'wangfm@3bu.cn'  # 收件人地址，多人以分号分隔
+    # receiver = 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn;'  # 收件人地址，多人以分号分隔
+    receiver = 'wangfm@3bu.cn'
     user = 'devops@3bu.cn'
     password = 'Xungejiaoyu@2015'
     Subject = '自动化测试报告'
@@ -81,6 +81,9 @@ def sendReportWithAtt(attachment):
     # att['Content-Disposition'] = 'attachment; filename = "report.html"'
     msgRoot['Subject'] = Subject
     msgRoot['From'] = sender
+    msgRoot['to'] = receiver
+
+
     msgRoot.attach(att)
 
     mime = MIMEBase('application', 'html', filename=attName)
@@ -97,7 +100,7 @@ def sendReportWithAtt(attachment):
 
     smtp = smtplib.SMTP(smtpserver)
     smtp.login(user, password)
-    smtp.sendmail(msgRoot['From'], receiver, msgRoot.as_string())
+    smtp.sendmail(msgRoot['From'], msgRoot['To'].split(';'), msgRoot.as_string())
 
     smtp.quit()
     print('test report has send out!')

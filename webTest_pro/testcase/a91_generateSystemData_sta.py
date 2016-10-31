@@ -3,13 +3,14 @@
 import os
 import sys
 import unittest
+from time import sleep
 
 from selenium import webdriver
 
 sys.path.append(os.path.dirname(os.getcwd()))
 sys.path.append(os.getcwd())
 from model.init import execEnv
-from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, conf_mcu
+from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, conf_mcu, add_MCUequipments
 from model.init import loginInfo, db_conf
 
 reload(sys)
@@ -18,8 +19,11 @@ sys.setdefaultencoding("utf-8")
 users = [{'loginName': 'user', 'trueName': 'teacher'},
          {'loginName': 'user1', 'trueName': 'teacher1'}]
 
+MCUequipments = [{'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.85', 'mcu_port': '80', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'},
+                 {'equipmentName': '95mcu', 'equipIpAddr': '10.1.0.95', 'mcu_port': '10000', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'}]
+
 middle_interact_ip = db_conf['hostadd']
-child_interact_ip = '10.1.0.45'
+child_interact_ip = '10.1.0.59'
 middle_interacts = {'host': middle_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
 child_interacts = {'host': child_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
 
@@ -54,6 +58,19 @@ class generateSystemData(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
         print "generateSystemData end!"
         print "=" * 60
+
+    def test_add_MCUequipments(self):
+        '''添加知识点'''
+        print "exec：test_add_MCUequipments..."
+
+        driver = self.driver
+        user_login(driver, **loginInfo)
+
+        for MCUequipment in MCUequipments:
+            add_MCUequipments(driver, **MCUequipment)
+            self.assertEqual(u"保存成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
+        sleep(0.5)
+        print "exec：test_add_MCUequipments success."
 
     def test_aconfLocalInteract(self):        
         '''配置中心消息中间件'''

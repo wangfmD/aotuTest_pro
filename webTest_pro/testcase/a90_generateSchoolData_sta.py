@@ -23,24 +23,6 @@ middle_interact_ip = db_conf['hostadd']
 child_interact_ip = '10.1.0.45'
 middle_interacts = {'host': middle_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
 child_interacts = {'host': child_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
-     
-# schools = [{'schoolName': u'二中', 'schoolType': u'高中', 'schoolArea': u'郑州市'},
-#            {'schoolName': u'三中', 'schoolType': u'中学', 'schoolArea': u'郑州市'},
-#            {'schoolName': u'四中', 'schoolType': u'中学', 'schoolArea': u'开封市'},
-#            {'schoolName': u'五中', 'schoolType': u'小学', 'schoolArea': u'开封市'},
-#            {'schoolName': u'六中', 'schoolType': u'小学', 'schoolArea': u'开封市'},
-#            {'schoolName': u'一中', 'schoolType': u'高中', 'schoolArea': u'郑州市'}]
-# classrooms = [{'className': '31className', 'classAccNumber': '1'},
-#               {'className': '32className', 'classAccNumber': '1'}]
-# terminals = [
-#     {'equipmentModel': u'Group系列', 
-#       'classroom': '32className', 
-#       'equipment_name': '81lb', 
-#       'ipAddr': '10.1.0.81', 
-#       'locAddr': '10.1.0.81', 
-#       'equipmentLogName': 'admin', 
-#       'equipmentLogPwd': 'admin'},
-#       {'equipmentModel': u'Group系列', 'classroom': '31className', 'equipment_name': '82lb', 'ipAddr': '10.1.0.82', 'locAddr': '10.1.0.81', 'equipmentLogName': 'admin', 'equipmentLogPwd': 'admin'}]
 
 schools = []
 school = {}

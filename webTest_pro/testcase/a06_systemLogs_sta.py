@@ -20,7 +20,7 @@ operaters = [{'user': 'hnsadmin'}]
 
 
 class interactGroup(unittest.TestCase):
-    ''''互动组管理'''
+    ''''日志管理'''
 
     def setUp(self):
         if execEnv['execType'] == 'local':

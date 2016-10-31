@@ -23,6 +23,7 @@ sys.setdefaultencoding("utf-8")
 
 MCUequipments = [{'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.85', 'mcu_port': '80', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'},
                  {'equipmentName': '95mcu', 'equipIpAddr': '10.1.0.95', 'mcu_port': '10000', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'}]
+
 equipmentData = [{'equipmentName': u'测试设备', 'equipIpAddr': '10.1.0.19', 'mcu_port': '80', 'mcuLoginName': 'zhangsan', 'mcuPasswd': '111111', 'softAgentIp': '10.1.4.33', 'softAgentPort': '80', 'bandWidth': '1000', 'searchName': '85mcu'},
                  {'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.19', 'mcu_port': '80', 'mcuLoginName': 'zhangsan', 'mcuPasswd': '111111', 'softAgentIp': '10.1.4.33', 'softAgentPort': '80', 'bandWidth': '1000', 'searchName': u'测试设备'}]
 

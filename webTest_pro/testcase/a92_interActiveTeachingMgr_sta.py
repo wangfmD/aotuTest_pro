@@ -17,8 +17,6 @@ from model.init import loginInfo
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-emails = [{'smtp': 'smtp.162.com', 'fromName': 'haosea@qq.com', 'password': '111111'},
-          {'smtp': 'smtp.163.com', 'fromName': 'haosea1@qq.com', 'password': '111111'}]
 
 
 class interActiveTeachingMgr(unittest.TestCase):
@@ -58,19 +56,6 @@ class interActiveTeachingMgr(unittest.TestCase):
 
         print "exec：test_add_hdk success."
 
-    # def test_del_emails(self):
-    #     '''删除邮件服务器_确定'''
-    #     print "exec：test_del_emails..."
-    # 
-    #     driver = self.driver
-    #     user_login(driver, **loginInfo)
-    # 
-    #     for email in emails:
-    #         del_email(driver)
-    #         sleep(1.5)
-    #         self.assertEqual(u"删除成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
-    #         sleep(0.5)
-    #     print "exec：test_del_emails success."
 
     def is_element_present(self, how, what):
         try:
