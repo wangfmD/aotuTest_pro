@@ -55,7 +55,7 @@ class MCUequipmentmgr(unittest.TestCase):
         print "=" * 60
 
     def test_add_MCUequipments(self):
-        '''添加知识点'''
+        '''添加MCU'''
         print "exec：test_add_MCUequipments..."
 
         driver = self.driver
@@ -68,7 +68,7 @@ class MCUequipmentmgr(unittest.TestCase):
         print "exec：test_add_MCUequipments success."
 
     def test_bsearch_MCUequipment(self):
-        '''查询知识点信息'''
+        '''查询MCU信息'''
         print "exec：test_search_MCUequipment"
 
         driver = self.driver
@@ -94,7 +94,7 @@ class MCUequipmentmgr(unittest.TestCase):
         sleep(0.5)
 
     def test_del_MCUequipment_ok(self):
-        '''删除知识点_确定'''
+        '''删除MCU_确定'''
         print "exec：test_del_MCUequipment_ok..."
 
         driver = self.driver

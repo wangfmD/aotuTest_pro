@@ -60,7 +60,7 @@ class generateSystemData(unittest.TestCase):
         print "=" * 60
 
     def test_add_MCUequipments(self):
-        '''添加知识点'''
+        '''添加MCU'''
         print "exec：test_add_MCUequipments..."
 
         driver = self.driver
