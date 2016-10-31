@@ -22,7 +22,8 @@ sys.setdefaultencoding("utf-8")
 
 knowledges = [{'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"双细胞", 'knowledgeCode': u"双细胞1"},
               {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]
-knowledgeData = [{'knowledgeName': u'梯形的特征modify','knowledgeCode':'SX01','searchName':u'梯形的特征'}]
+knowledgeData = [{'knowledgeName': u'梯形的特征modify', 'knowledgeCode': 'SX01', 'searchName': u'梯形的特征'},
+                 {'knowledgeName': u'梯形的特征', 'knowledgeCode': 'SX01', 'searchName': u'梯形的特征modify'}]
 
 
 class knowledgemanager(unittest.TestCase):
@@ -77,7 +78,7 @@ class knowledgemanager(unittest.TestCase):
                              driver.find_element_by_xpath("//table[@id='knowledgetable']/tbody/tr/td[7]").text)
         print "exec: test_search_knowledge success."
         sleep(0.5)
-		
+
     def test_bupdate_knowledge(self):
         '''修改知识点信息'''
         print "exec：test_bupdate_knowledge"
@@ -89,7 +90,6 @@ class knowledgemanager(unittest.TestCase):
             update_Knowledge(driver, **knowledge)
         print "exec: test_bupdate_knowledge success."
         sleep(0.5)
-
 
     def test_del_knowledge_ok(self):
         '''删除知识点_确定'''

@@ -27,7 +27,9 @@ jp_lesson_cfgs = [{'name': u'精品课'}, {'name': u'精品_课480p'}]
 conference_cfgs = [{'name': u'会议'}, {'name': u'会_议480p'}]
 speaker_lesson_cfgs = [{'name': u'主讲下课'}, {'name': u'主讲_下课_1'}]
 listener_lesson_cfgs = [{'name': u'听讲下课'}, {'name': u'听讲_下课_1'}]
-theClassData = [{'name': u'下课模板测试数据','searchName':u'主讲下课'}]
+theClassData = [{'name': u'下课模板测试数据', 'searchName': u'主讲下课'},
+                {'name': u'主讲下课', 'searchName': u'下课模板测试数据'}]
+
 
 class speackCfgsMgr(unittest.TestCase):
     ''''主讲模板管理'''
@@ -81,7 +83,7 @@ class speackCfgsMgr(unittest.TestCase):
                              driver.find_element_by_xpath("//table[@id='lectureclasstable']/tbody/tr/td[3]").text)
         print "exec: test_search_cfg_speaker_lessons success."
         sleep(0.5)
-		
+
     def test_bupdate_cfg_speaker_lessons(self):
         '''修改主讲下课模板信息'''
         print "exec：test_bupdate_cfg_speaker_lessons"

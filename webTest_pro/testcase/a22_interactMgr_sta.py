@@ -18,14 +18,13 @@ from  model.baseActionSearch import search_interact
 from  model.baseActionModify import update_Middleware
 from model.init import loginInfo
 
-
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-
 interacts = [{'host': '10.1.0.2', 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'},
              {'host': '10.1.0.3', 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}]
-middlewareData = [{'host': u'1.1.0.1','port':'80','username':'zhangsan','password':'111111','servicepath':'/interact','description':u'测试说明','searchName':u'10.1.0.3'}]
+middlewareData = [{'host': '1.1.0.1', 'port': '80', 'username': 'zhangsan', 'password': '111111', 'servicepath': '/interact', 'description': u'测试说明', 'searchName': '10.1.0.3'},
+                  {'host': '10.1.0.3', 'port': '80', 'username': 'zhangsan', 'password': '111111', 'servicepath': '/interact', 'description': u'测试说明', 'searchName': '1.1.0.1'}]
 
 
 class interactMgr(unittest.TestCase):
@@ -80,7 +79,7 @@ class interactMgr(unittest.TestCase):
                              driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr/td[2]").text)
         print "exec: test_search_interacts success."
         sleep(0.5)
-		
+
     def test_bupdate_interacts(self):
         '''修改单条中心设备消息中间件数据'''
         print "exec：test_bupdate_interacts"
@@ -133,6 +132,7 @@ class interactMgr(unittest.TestCase):
             return alert_text
         finally:
             self.accept_next_alert = True
+
 
 if __name__ == '__main__':
     unittest.main()

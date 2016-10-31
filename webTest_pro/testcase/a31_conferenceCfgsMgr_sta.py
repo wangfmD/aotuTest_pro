@@ -27,7 +27,9 @@ jp_lesson_cfgs = [{'name': u'精品课'}, {'name': u'精品_课480p'}]
 conference_cfgs = [{'name': u'会议'}, {'name': u'会_议480p'}]
 speaker_lesson_cfgs = [{'name': u'主讲下课'}, {'name': u'主讲_下课_1'}]
 listener_lesson_cfgs = [{'name': u'听讲下课'}, {'name': u'听讲_下课_1'}]
-VideoConferencingData = [{'name': u'720PP','searchName':u'会议'}]
+
+VideoConferencingData = [{'name': '720PP','searchName':u'会议'},
+                         {'name': u'会议','searchName':'720PP'}]
 
 
 class conferenceCfgsMgr(unittest.TestCase):

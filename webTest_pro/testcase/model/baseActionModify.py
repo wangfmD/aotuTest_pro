@@ -811,9 +811,6 @@ def update_User(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['trueName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条租户管理'''
 tenantData = [{'platmarkName': u'河南教育局','platmarkCode':'001','searchName':u''}]
@@ -843,9 +840,6 @@ def update_Tenant(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['platmarkName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条学校数据'''
@@ -878,9 +872,6 @@ def update_School(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['schoolName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条学校设备'''
 schoolManagementData = [{'name': u'设备1号','ipAddr':u'10.1.0.57','locAddr':u'10.1.0.57','equipmentLogName':u'hnsadmin','equipmentLogPwd':u'111111','description':u'测试数据'}]
@@ -921,9 +912,6 @@ def update_DeviceManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条组管理数据'''
@@ -952,9 +940,6 @@ def update_GroupManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['groupName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条角色管理数据'''
 roleData = [{'roleName': u'奥数组','roleCode':'001','description':u'说明测试数据','searchName':''}]
@@ -989,9 +974,6 @@ def update_roleManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['roleName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条互动组管理数据'''
 interactiveData = [{'grpName': u'互动组','searchName':''}]
@@ -1022,9 +1004,7 @@ def update_Interactive(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['grpName']
-    driver.close()
-    driver.quit()
-    driver = None
+
 
 '''修改单条科目管理数据'''
 subjectsData = [{'subjectName': u'测试科目名称','description':'描述说明','searchName':''}]
@@ -1041,8 +1021,10 @@ def update_Subjects(driver, **kwargs):
         driver.find_element_by_xpath("//input[@id='searchsubject']").clear()
         driver.find_element_by_xpath("//input[@id='searchsubject']").send_keys(kwargs['searchName'])
         driver.find_element_by_xpath("//button[@id='search']").click()
-
+        sleep(1)
+        # modify btn
         driver.find_element_by_id("subjects").click()
+        sleep(1)
         driver.find_element_by_css_selector("#subjectupdate #subjectName").clear()
         driver.find_element_by_css_selector("#subjectupdate #subjectName").send_keys(kwargs['subjectName'])
         driver.find_element_by_css_selector("#subjectupdate #description").clear()
@@ -1054,9 +1036,6 @@ def update_Subjects(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['subjectName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条章管理数据'''
 chapterData = [{'chapterName': u'数学第一章测试','chapterCode':'SX01','searchName':''}]
@@ -1075,6 +1054,7 @@ def update_Chapter(driver, **kwargs):
         #click search button
         driver.find_element_by_xpath("//button[@id='search']").click()
         sleep(1)
+        # click modify btn
         driver.find_element_by_id("chapters").click()
         sleep(1)
         driver.find_element_by_css_selector("#chapterupdate #formrole #chapterName").clear()
@@ -1088,9 +1068,6 @@ def update_Chapter(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['chapterName']
-    # driver.close()
-    # driver.quit()
-    # driver = None
 
 
 '''修改单条节管理数据'''
@@ -1111,6 +1088,7 @@ def update_Section(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='search']").click()
         sleep(1)
+        # click modify btn
         driver.find_element_by_id("sections").click()
         sleep(1)
         driver.find_element_by_css_selector("#sectionupdate #formrole #sectionName").clear()
@@ -1124,9 +1102,6 @@ def update_Section(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['sectionName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条知识点管理数据'''
@@ -1147,7 +1122,7 @@ def update_Knowledge(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='search']").click()
         sleep(0.5)
-
+        # click modify btn
         driver.find_element_by_id("knowledges").click()
         sleep(1)
         driver.find_element_by_css_selector("#knowledgeupdate #formrole #knowledgeName").clear()
@@ -1161,9 +1136,6 @@ def update_Knowledge(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['knowledgeName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条中心设备数据'''
@@ -1183,6 +1155,7 @@ def update_Equipment(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='btnMcuNm']").click()
         sleep(0.5)
+        # click modify btn
         driver.find_element_by_css_selector("button.btn.grey").click()
         sleep(1)
         driver.find_element_by_css_selector("#mcuequipmentupdate #formrole #equipmentModel #equipmentName").clear()
@@ -1219,9 +1192,6 @@ def update_Equipment(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['equipmentName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条中心设备消息中间件数据'''
 middlewareData = [{'host': u'1.1.0.1','port':'80','username':'zhangsan','password':'111111','servicepath':'/interact','description':u'测试说明','searchName':u''}]
@@ -1242,6 +1212,7 @@ def update_Middleware(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='btnmiddleware']").click()
         sleep(0.5)
+        # click modify btn
         driver.find_element_by_id("middlewrupd").click()
         sleep(1)
         driver.find_element_by_css_selector("#middlewareupdate > div.modal-dialog > div.modal-content > #formrole > div.modal-body.row > div > div.form-group > #host").clear()
@@ -1269,9 +1240,6 @@ def update_Middleware(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['host']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条模板管理互动教学数据'''
@@ -1291,6 +1259,8 @@ def update_InteractiveTeaching(driver, **kwargs):
         driver.find_element_by_xpath("//input[@id='searchinteractteach']").send_keys(kwargs['searchName'])
         # click search button
         driver.find_element_by_xpath("//button[@id='search']").click()
+        sleep(0.5)
+        # click modify btn
         driver.find_element_by_id("updinterteach").click()
         sleep(1)
         driver.find_element_by_css_selector("#interactteachupdate #formrole #name").clear()
@@ -1303,9 +1273,6 @@ def update_InteractiveTeaching(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条模板管理精品课堂数据'''
 excellentClassroomData = [{'name': u'720PP','searchName':u''}]
@@ -1327,6 +1294,7 @@ def update_ExcellentClassroom(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='searchs']").click()
         sleep(0.5)
+        # click modify btn
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[3]").click()
         sleep(0.5)
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").clear()
@@ -1339,9 +1307,6 @@ def update_ExcellentClassroom(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 '''修改单条模板管理精品课堂数据'''
@@ -1364,6 +1329,7 @@ def update_ExcellentClassroom(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='searchs']").click()
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[2]").click()
+        # click modify btn
         sleep(0.5)
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").send_keys(kwargs['name'])
@@ -1375,9 +1341,6 @@ def update_ExcellentClassroom(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条模板管理视频会议数据'''
 VideoConferencingData = [{'name': u'720PP','searchName':u'会议'}]
@@ -1398,6 +1361,7 @@ def update_VideoConferencing(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='searched']").click()
         sleep(0.5)
+        # click modify btn
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[3]").click()
         sleep(0.5)
         driver.find_element_by_css_selector("#videoconferenceupdate #formrole #name").clear()
@@ -1410,9 +1374,6 @@ def update_VideoConferencing(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    # driver.close()
-    # driver.quit()
-    # driver = None
 
 '''修改单条模板管理主讲下课数据'''
 theClassData = [{'name': u'下课模板测试数据','searchName':u''}]
@@ -1435,6 +1396,7 @@ def update_TheClass(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='search_lec']").click()
         sleep(0.5)
+        # click modify btn
         driver.find_element_by_xpath("//table[@id='lectureclasstable']/tbody/tr/td[4]/button[2]").click()
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #name").send_keys(kwargs['name'])
@@ -1446,9 +1408,6 @@ def update_TheClass(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条模板管理主讲听课下课'''
 classOverData = [{'name': u'下课模板测试数据','searchName':''}]
@@ -1472,6 +1431,7 @@ def update_ClassOver(driver, **kwargs):
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[5]").click()
         sleep(1)
+        # click modify btn
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #basicfact #name").clear()
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #basicfact #name").send_keys(kwargs['name'])
 
@@ -1482,9 +1442,6 @@ def update_ClassOver(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['name']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条邮箱服务管理'''
 smtpData = [{'smtp': u'smtp.163.com','fromName':'519484955@qq.com','password':'111111'}]
@@ -1498,6 +1455,7 @@ def update_Smtp(driver, **kwargs):
         sleep(0.5)
         driver.find_element_by_link_text(u"邮箱服务管理").click()
         sleep(1)
+        # click modify btn
         driver.find_element_by_xpath("//td[7]/button").click()
         sleep(1)
         driver.find_element_by_css_selector("#modal #smtp").clear()
@@ -1516,9 +1474,6 @@ def update_Smtp(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['smtp']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条互动教学'''
 lessonData = [{'lessonName': u'测试课表','searchName':u''}]
@@ -1546,9 +1501,6 @@ def update_Lesson(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['lessonName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条精品课堂'''
 goodsClassData = [{'lessonName': u'测试课表'}]
@@ -1574,9 +1526,6 @@ def update_GoodsClass(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['lessonName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条视频会议'''
 videoConferenceData = [{'meetingName': u'会议名称测试','confName':u'会议别名测试','meeting_password':'111111'}]
@@ -1608,9 +1557,6 @@ def update_VideoConference(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['meetingName']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条视频管理'''
 videoManagementData = [{'title': u'测试标题','remark':u'描述测试'}]
@@ -1639,9 +1585,6 @@ def update_VideoManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['title']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条文档管理'''
 documentManagementData = [{'title': u'测试标题','remark':u'描述测试'}]
@@ -1670,9 +1613,6 @@ def update_DocumentManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['title']
-    driver.close()
-    driver.quit()
-    driver = None
 
 '''修改单条微课管理'''
 smallClassManagemenData = [{'title': u'测试标题','remark':u'描述测试'}]
@@ -1701,9 +1641,6 @@ def update_SmallClassManagement(driver, **kwargs):
     except Exception as e:
         print e
         print "修改：%s 失败。" % kwargs['title']
-    driver.close()
-    driver.quit()
-    driver = None
 
 
 if __name__ == "__main__":
@@ -1715,42 +1652,3 @@ if __name__ == "__main__":
 #         update_User(driver,**itms)
     for itms in modifysubjectsGroup:
         update_subjectGrp(driver,**itms)
-#     for itms in schoolManagementData:
-#         update_DeviceManagement(driver,**itms)
-#     for itms in schoolSchoolClassroomData:
-#         update_SchoolClassroom(driver,**itms)
-#     for itms in GroupData:
-#         update_GroupManagement(driver,**itms)
-#     for itms in GroupData:
-#         update_GroupManagement(driver,**itms)
-#     for itms in subjectsData:
-#         update_Subjects(driver,**itms)
-#     for itms in chapterData:
-#         update_Chapter(driver,**itms)
-#     for itms in sectionData:
-#         update_Section(driver,**itms)
-#     for itms in knowledgeData:
-#         update_Knowledge(driver,**itms)
-#     for itms in equipmentData:
-#         update_Equipment(driver,**itms)
-#     for itms in interactiveTeachingData:
-#         update_InteractiveTeaching(driver,**itms)
-#     for itms in middlewareData:
-#         update_Middleware(driver,**itms)
-#     for itms in excellentClassroomData:
-#         update_ExcellentClassroom(driver,**itms)
-#     for itms in VideoConferencingData:
-#         update_VideoConferencing(driver,**itms)
-#     for itms in theClassData:
-#         update_TheClass(driver,**itms)
-#     for itms in classOverData:
-#         update_ClassOver(driver,**itms)
-#     for itms in smtpData:
-#         update_Smtp(driver,**itms)
-#     for itms in lessonData:
-#         update_Lesson(driver,**itms)
-#     for itms in goodsClassData:
-#         update_GoodsClass(driver,**itms)
-#     for itms in videoConferenceData:
-#         update_VideoConference(driver,**itms)
-

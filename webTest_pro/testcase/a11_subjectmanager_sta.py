@@ -21,7 +21,8 @@ sys.setdefaultencoding("utf-8")
 
 subjects = [{'subjectName': u'书法', 'description': u'学习中国文化'},
             {'subjectName': u'计算机', 'description': u'计算机基础应用'}]
-subjectsData = [{'subjectName': u'测试科目名称','description':u'描述说明','searchName':u'书法'}]
+subjectsData = [{'subjectName': u'测试科目名称','description':u'描述说明','searchName':u'书法'},
+                {'subjectName': u'书法', 'description': u'描述说明', 'searchName': u'测试科目名称'}]
 
 
 class subjectmanager(unittest.TestCase):
