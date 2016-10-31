@@ -23,7 +23,7 @@ subjects = [{'subjectName': u'书法', 'description': u'学习中国文化'},
             {'subjectName': u'计算机', 'description': u'计算机基础应用'}]
 chapters = [{'gradeid': u"二年级", 'subjectid': u"数学", 'chapterName': u'第一章a', 'chapterCode': u'助记码1'},
             {'gradeid': u"二年级", 'subjectid': u"数学", 'chapterName': u'第一章b', 'chapterCode': u'助记码1'}]
-chapterData = [{'chapterName': u'数学第一章测试','chapterCode':'SX01','searchName':u'第一章b'}]
+chapterData = [{'chapterName': u'语文第一章modify','chapterCode':'SX01','searchName':u'语文第一章'}]
 
 
 class chaptermanager(unittest.TestCase):

@@ -22,7 +22,7 @@ sys.setdefaultencoding("utf-8")
 
 knowledges = [{'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"双细胞", 'knowledgeCode': u"双细胞1"},
               {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]
-knowledgeData = [{'knowledgeName': u'小猫钓鱼测试','knowledgeCode':'SX01','searchName':u'双细胞'}]
+knowledgeData = [{'knowledgeName': u'梯形的特征modify','knowledgeCode':'SX01','searchName':u'梯形的特征'}]
 
 
 class knowledgemanager(unittest.TestCase):

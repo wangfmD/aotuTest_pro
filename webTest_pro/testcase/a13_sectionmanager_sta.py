@@ -23,7 +23,7 @@ sys.setdefaultencoding("utf-8")
 
 sections = [{'gradeid': u"二年级", 'subjectid': u"数学", 'chapterid': u"数学第二章", 'sectionName': u"sx第一节", 'sectionCode': u"第一节zjm"},
             {'gradeid': u"二年级", 'subjectid': u"数学", 'chapterid': u"数学第二章", 'sectionName': u"sx第二节", 'sectionCode': u"第二节zjm"}]
-sectionData = [{'sectionName': u'第一节测试','sectionCode':'SX01','searchName':u'sx第一节'}]
+sectionData = [{'sectionName': u'平行线test','sectionCode':'SX01','searchName':u'平行线'}]
 
 
 class sectionmanager(unittest.TestCase):

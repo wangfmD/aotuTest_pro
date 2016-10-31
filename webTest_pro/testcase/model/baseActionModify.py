@@ -1076,13 +1076,14 @@ def update_Chapter(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='search']").click()
         sleep(1)
         driver.find_element_by_id("chapters").click()
+        sleep(1)
         driver.find_element_by_css_selector("#chapterupdate #formrole #chapterName").clear()
         driver.find_element_by_css_selector("#chapterupdate #formrole #chapterName").send_keys(kwargs['chapterName'])
         driver.find_element_by_css_selector("#chapterupdate #formrole #chapterCode").clear()
         driver.find_element_by_css_selector("#chapterupdate #formrole #chapterCode").send_keys(kwargs['chapterCode'])
         # click 确定
         driver.find_element_by_id("updatechapter").click()
-        sleep(1)
+        sleep(2)
         print "add {} success.".format(kwargs['chapterName'])
     except Exception as e:
         print e
@@ -1111,6 +1112,7 @@ def update_Section(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='search']").click()
         sleep(1)
         driver.find_element_by_id("sections").click()
+        sleep(1)
         driver.find_element_by_css_selector("#sectionupdate #formrole #sectionName").clear()
         driver.find_element_by_css_selector("#sectionupdate #formrole #sectionName").send_keys(kwargs['sectionName'])
         driver.find_element_by_css_selector("#sectionupdate #formrole #sectionCode").clear()
@@ -1147,6 +1149,7 @@ def update_Knowledge(driver, **kwargs):
         sleep(0.5)
 
         driver.find_element_by_id("knowledges").click()
+        sleep(1)
         driver.find_element_by_css_selector("#knowledgeupdate #formrole #knowledgeName").clear()
         driver.find_element_by_css_selector("#knowledgeupdate #formrole #knowledgeName").send_keys(kwargs['knowledgeName'])
         driver.find_element_by_css_selector("#knowledgeupdate #formrole #knowledgeCode").clear()
@@ -1181,7 +1184,7 @@ def update_Equipment(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='btnMcuNm']").click()
         sleep(0.5)
         driver.find_element_by_css_selector("button.btn.grey").click()
-
+        sleep(1)
         driver.find_element_by_css_selector("#mcuequipmentupdate #formrole #equipmentModel #equipmentName").clear()
         driver.find_element_by_css_selector("#mcuequipmentupdate #formrole #equipmentModel #equipmentName").send_keys(kwargs['equipmentName'])
 
@@ -1240,7 +1243,7 @@ def update_Middleware(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='btnmiddleware']").click()
         sleep(0.5)
         driver.find_element_by_id("middlewrupd").click()
-
+        sleep(1)
         driver.find_element_by_css_selector("#middlewareupdate > div.modal-dialog > div.modal-content > #formrole > div.modal-body.row > div > div.form-group > #host").clear()
         driver.find_element_by_css_selector("#middlewareupdate > div.modal-dialog > div.modal-content > #formrole > div.modal-body.row > div > div.form-group > #host").send_keys(kwargs['host'])
 
@@ -1289,7 +1292,7 @@ def update_InteractiveTeaching(driver, **kwargs):
         # click search button
         driver.find_element_by_xpath("//button[@id='search']").click()
         driver.find_element_by_id("updinterteach").click()
-
+        sleep(1)
         driver.find_element_by_css_selector("#interactteachupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#interactteachupdate #formrole #name").send_keys(kwargs['name'])
 
@@ -1325,7 +1328,7 @@ def update_ExcellentClassroom(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='searchs']").click()
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[3]").click()
-
+        sleep(0.5)
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").send_keys(kwargs['name'])
 
@@ -1361,7 +1364,7 @@ def update_ExcellentClassroom(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='searchs']").click()
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[2]").click()
-
+        sleep(0.5)
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#excellentclassupdate #formrole #name").send_keys(kwargs['name'])
 
@@ -1396,7 +1399,7 @@ def update_VideoConferencing(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='searched']").click()
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[3]").click()
-
+        sleep(0.5)
         driver.find_element_by_css_selector("#videoconferenceupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#videoconferenceupdate #formrole #name").send_keys(kwargs['name'])
 
@@ -1468,7 +1471,7 @@ def update_ClassOver(driver, **kwargs):
         driver.find_element_by_xpath("//button[@id='search_lic']").click()
         sleep(0.5)
         driver.find_element_by_xpath("(//button[@id='updinterteach'])[5]").click()
-
+        sleep(1)
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #basicfact #name").clear()
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #basicfact #name").send_keys(kwargs['name'])
 
