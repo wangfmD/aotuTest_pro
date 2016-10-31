@@ -21,7 +21,6 @@ def admin_login(driver):
       Usage: admin_login(driver)
 
     """
-    driver.implicitly_wait(20)
     # open url
     driver.get(base_url + "/middleclient/index.do")
     driver.maximize_window()
@@ -45,7 +44,6 @@ def user_login(driver, **kwargs):
 
     """
     print "loginfo:\nuser:{0}，platform:{1}".format(kwargs['username'], kwargs['platformname'])
-    driver.implicitly_wait(20)
     # open url
     driver.get(base_url + "/middleclient/index.do")
     driver.maximize_window()
@@ -829,7 +827,6 @@ def conf_local_interact(driver, interactaddr):
       Usage:
 
     """
-    driver.implicitly_wait(20)
     # open url
     driver.get("http://" + interactaddr + "/interact/login.do")
     driver.maximize_window()
@@ -882,7 +879,6 @@ def conf_child_interact(driver, interactaddr, serveraddr):
     #     //tbody[@id='selectLocal']/tr/td     //input[@name='text']  			//tbody[@id='selectLocal']/tr/td[4]/input     10.1.0.45
     #     //tbody[@id='selectLocal']/tr[2]/td  xpath=(//input[@name='text'])[2]	//tbody[@id='selectLocal']/tr[2]/td[4]/input  10.1.0.56
 
-    driver.implicitly_wait(20)
     driver.get("http://" + interactaddr + "/interact/login.do")
     driver.maximize_window()
     driver.find_element_by_id("username").clear()

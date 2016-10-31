@@ -12,38 +12,6 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 
-def admin_login(driver):
-    driver.implicitly_wait(40)
-    # open url
-    driver.get(base_url + "/middleclient/index.do")
-    driver.maximize_window()
-    # select platform and login
-    driver.find_element_by_id('s_username').clear()
-    driver.find_element_by_id('s_username').send_keys('administrator')
-    driver.find_element_by_id('s_password').clear()
-    driver.find_element_by_id('s_password').send_keys('xungejiaoyu')
-    # click login btn
-    driver.find_element_by_name('submit').click()
-    sleep(0.5)
-
-
-def user_login(driver, **kwargs):
-    print "loginfo\nlogin user:{0}，login platform:{1}".format(kwargs['username'], kwargs['platformname'])
-    driver.implicitly_wait(30)
-    # open url
-    driver.get(base_url + "/middleclient/index.do")
-    driver.maximize_window()
-    driver.refresh()
-    # select platform and login
-    Select(driver.find_element_by_id("platform")).select_by_visible_text(kwargs['platformname'])
-    driver.find_element_by_id('s_username').clear()
-    driver.find_element_by_id('s_username').send_keys(kwargs['username'])
-    driver.find_element_by_id('s_password').clear()
-    driver.find_element_by_id('s_password').send_keys('111111')
-    # click login btn
-    driver.find_element_by_name('submit').click()
-    sleep(0.5)
-
 
 def del_school(driver, **kwargs):
     '''删除学校'''

@@ -19,32 +19,6 @@ middle_interact_ip = db_conf['hostadd']
 node_interact_ip = interact_1
 
 
-def adomin_login(driver):
-    driver.implicitly_wait(40)
-    driver.get(base_url + "/middleclient/index.do")
-    driver.maximize_window()
-    driver.find_element_by_id('s_username').clear()
-    driver.find_element_by_id('s_username').send_keys('administrator')
-    driver.find_element_by_id('s_password').clear()
-    driver.find_element_by_id('s_password').send_keys('xungejiaoyu')
-    driver.find_element_by_name('submit').click()
-
-
-def user_login(driver, username, platformname):
-    driver.implicitly_wait(30)
-    driver.get(base_url + "/middleclient/index.do")
-    driver.maximize_window()
-    driver.refresh()
-    Select(driver.find_element_by_id("platform")).select_by_visible_text(platformname)
-    # Select(driver.find_element_by_id("platform")).select_by_visible_text(
-    #     u"河南教育局哦")
-    driver.find_element_by_id('s_username').clear()
-    driver.find_element_by_id('s_username').send_keys(username)
-    driver.find_element_by_id('s_password').clear()
-    driver.find_element_by_id('s_password').send_keys('111111')
-    driver.find_element_by_name('submit').click()
-
-
 def addUserPlatform():
     driver = webdriver.Chrome()
     adomin_login(driver)
@@ -255,7 +229,6 @@ def add_interact(addr):
 
 def conf_local_interact(interactaddr):
     driver = webdriver.Chrome()
-    driver.implicitly_wait(40)
     driver.get("http://" + interactaddr + "/interact/login.do")
     driver.maximize_window()
     driver.find_element_by_id("username").clear()
