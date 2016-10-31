@@ -2,7 +2,6 @@
 import os
 import sys
 import unittest
-import unittest
 
 sys.path.append(os.path.dirname(os.getcwd()))
 from selenium import webdriver
@@ -11,7 +10,6 @@ from time import sleep
 from model.baseActionAdd import admin_login, add_tenants
 from model.baseActionSearch import search_tenant
 from model.baseActionModify import update_Tenant
-from model.baseActionDel import del_tenants
 from model.init import execEnv
 
 tenantAdd = [{'areaid': "//div[@id='treeview']/ul/li[17]",'platmarkName':u'河南教育局','platmarkCode':'001'},
@@ -125,7 +123,7 @@ class tenantmanger(unittest.TestCase):
         print "exec: test_del_tenant OK"
 
         # bug 新建立组合要等到一点时间，新组合才能登录系统
-        sleep(180)
+        sleep(1)
 
     def is_element_present(self, how, what):
         try:
