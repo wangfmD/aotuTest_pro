@@ -22,13 +22,9 @@ from model.init import loginInfo
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-hdk_lesson_cfgs = [{'name': u'互动课模板'}, {'name': u'互动_课模板480p'}]
-jp_lesson_cfgs = [{'name': u'精品课'}, {'name': u'精品_课480p'}]
-conference_cfgs = [{'name': u'会议'}, {'name': u'会_议480p'}]
-speaker_lesson_cfgs = [{'name': u'主讲下课'}, {'name': u'主讲_下课_1'}]
-listener_lesson_cfgs = [{'name': u'听讲下课'}, {'name': u'听讲_下课_1'}]
-theClassData = [{'name': u'下课模板测试数据', 'searchName': u'主讲下课'},
-                {'name': u'主讲下课', 'searchName': u'下课模板测试数据'}]
+speaker_lesson_cfgs = [{'name': u'a主讲下课'}, {'name': u'主讲_下课_1'}]
+theClassData = [{'name': u'下课模板测试数据', 'searchName': u'a主讲下课'},
+                {'name': u'a主讲下课', 'searchName': u'下课模板测试数据'}]
 
 
 class speackCfgsMgr(unittest.TestCase):
@@ -87,7 +83,7 @@ class speackCfgsMgr(unittest.TestCase):
     def test_bupdate_cfg_speaker_lessons(self):
         '''修改主讲下课模板信息'''
         print "exec：test_bupdate_cfg_speaker_lessons"
-
+        #
         driver = self.driver
         user_login(driver, **loginInfo)
 

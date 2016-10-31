@@ -20,10 +20,10 @@ from model.init import loginInfo
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-knowledges = [{'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"双细胞", 'knowledgeCode': u"双细胞1"},
-              {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]
-knowledgeData = [{'knowledgeName': u'梯形的特征modify', 'knowledgeCode': 'SX01', 'searchName': u'梯形的特征'},
-                 {'knowledgeName': u'梯形的特征', 'knowledgeCode': 'SX01', 'searchName': u'梯形的特征modify'}]
+knowledges = [{'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'小学语文', 'sectionid': u"词", 'knowledgeName': u"双细胞", 'knowledgeCode': u"双细胞1"},
+              {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'小学语文', 'sectionid': u"词", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]
+knowledgeData = [{'knowledgeName': u'梯形的特征modify', 'knowledgeCode': 'SX01', 'searchName': u'比的性质'},
+                 {'knowledgeName': u'比的性质', 'knowledgeCode': 'SX01', 'searchName': u'梯形的特征modify'}]
 
 
 class knowledgemanager(unittest.TestCase):
@@ -89,7 +89,7 @@ class knowledgemanager(unittest.TestCase):
         for knowledge in knowledgeData:
             update_Knowledge(driver, **knowledge)
         print "exec: test_bupdate_knowledge success."
-        sleep(0.5)
+        sleep(1)
 
     def test_del_knowledge_ok(self):
         '''删除知识点_确定'''

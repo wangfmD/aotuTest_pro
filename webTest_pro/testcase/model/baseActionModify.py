@@ -1389,7 +1389,6 @@ def update_TheClass(driver, **kwargs):
         sleep(1)
         driver.find_element_by_xpath("//a[contains(text(),'主讲下课')]").click()
         sleep(1)
-
         # input search tontent
         driver.find_element_by_xpath("//input[@id='searchlectureclass']").clear()
         driver.find_element_by_xpath("//input[@id='searchlectureclass']").send_keys(kwargs['searchName'])
@@ -1398,6 +1397,7 @@ def update_TheClass(driver, **kwargs):
         sleep(0.5)
         # click modify btn
         driver.find_element_by_xpath("//table[@id='lectureclasstable']/tbody/tr/td[4]/button[2]").click()
+        sleep(1)
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #name").clear()
         driver.find_element_by_css_selector("#lectureclassupdate #formrole #name").send_keys(kwargs['name'])
 
