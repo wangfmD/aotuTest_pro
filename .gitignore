@@ -1,4 +1,4 @@
 *.pyc
 workspace.xml
 .idea
-*.htlm
+*.html
