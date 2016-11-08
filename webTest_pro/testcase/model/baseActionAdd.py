@@ -1400,9 +1400,6 @@ def add_excellentClass(driver):
         print e
         print "add jpk failed."
 
-
-
-
 if __name__ == '__main__':
     #driver = webdriver.Chrome()
     # user_login(driver, **loginInfo)

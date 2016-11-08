@@ -76,7 +76,7 @@ class subjectmanager(unittest.TestCase):
                              driver.find_element_by_xpath("//table[@id='subjecttable']/tbody/tr/td[2]").text)
         print "exec: test_bsearch_subjects success."
         sleep(0.5)
-		
+
     def test_bupdate_subjects(self):
         '''修改科目信息'''
         print "exec：test_bupdate_subjects"
