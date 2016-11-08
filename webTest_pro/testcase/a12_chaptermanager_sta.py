@@ -1,20 +1,19 @@
 # coding=utf-8
-import os
 import sys
 import unittest
+from time import sleep
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
-from model.init import execEnv
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
-from time import sleep
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo
 from model.baseActionAdd import user_login, add_chapters
 from model.baseActionDel import del_chapter
-# from model.baseActionModify import 
 from  model.baseActionSearch import search_chapter
 from  model.baseActionModify import update_Chapter
-from model.init import loginInfo
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

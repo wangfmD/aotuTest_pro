@@ -1,13 +1,14 @@
 # coding=utf-8
-import os
 import sys
-
-sys.path.append(os.path.dirname(os.getcwd()))
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
 from time import sleep
-from init import base_url
+
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.webdriver.support.ui import Select
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import base_url
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

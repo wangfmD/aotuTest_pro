@@ -1,18 +1,19 @@
 # coding=utf-8
-import os
 import sys
-
-sys.path.append(os.path.dirname(os.getcwd()))
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
 from time import sleep
-from init import loginInfo
-from  baseActionAdd import user_login
+
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import Select
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import loginInfo
+from model.baseActionAdd import user_login
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
 
 # def add_school_1(driver, **kwargs):
 #     print kwargs['schoolName'], kwargs['schoolType'], kwargs['schoolArea']

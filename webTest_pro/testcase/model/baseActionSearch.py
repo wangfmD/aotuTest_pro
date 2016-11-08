@@ -1,13 +1,17 @@
 # coding=utf-8
-import os
 import sys
+from time import sleep
 
-sys.path.append(os.path.dirname(os.getcwd()))
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from time import sleep
-from init import loginInfo
-from baseActionAdd import user_login
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import loginInfo
+from model.baseActionAdd import user_login
+
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -234,7 +238,7 @@ def search_systemLog(driver, **kwargs):
     driver.find_element_by_xpath("//input[@id='logsUser']").clear()
     driver.find_element_by_xpath("//input[@id='logsUser']").send_keys(kwargs['user'])
     sleep(0.5)
-    
+
     # click 确定
     driver.find_element_by_xpath("//button[@id='select']").click()
     sleep(1)
@@ -412,7 +416,7 @@ sections = [{'gradeid': u"二年级", 'subjectid': u"数学", 'chapterid': u"数
 def search_section(driver, **kwargs):
     # para:
     '''查询节信息'''
-    
+
     print "search info:{0},{1},{2},{3},{4}".format(kwargs['gradeid'], kwargs['subjectid'], kwargs['chapterid'], kwargs['sectionName'], kwargs['sectionCode'])
     # refresh main page
     try:
@@ -642,7 +646,7 @@ def search_cfg_speaker_lessons(driver, **kwargs):
     except Exception as e:
         print e
         print "search {} failed.".format(kwargs['name'])
-        
+
 
 emails = [{'smtp': 'smtp.162.com', 'fromName': 'haosea@qq.com', 'password': '111111'},
           {'smtp': 'smtp.163.com', 'fromName': 'haosea1@qq.com', 'password': '111111'}]

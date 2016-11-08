@@ -1,6 +1,4 @@
 # coding=utf-8
-
-import os
 import sys
 import unittest
 from time import sleep
@@ -8,16 +6,15 @@ from time import sleep
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
-from model.init import execEnv
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo
 from model.baseActionAdd import user_login, \
     add_cfg_hdks
 from model.baseActionDel import del_cfg_hdks
-# from model.baseActionModify import
 from model.baseActionSearch import search_cfg_hdks
 from model.baseActionModify import update_InteractiveTeaching
-from model.init import loginInfo
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

@@ -1,6 +1,8 @@
-import unittest, sys
+import sys
+import unittest
 
 from _env import addPaths
+
 addPaths('.')
 from common.mysqlKit import sqlOperating, sqlpara
 from common.init import db_conf

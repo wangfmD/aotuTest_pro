@@ -1,43 +1,42 @@
 # coding=utf-8
-import os
 import sys
 import unittest
+from time import sleep
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
-from model.init import execEnv
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
-from time import sleep
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo
 from model.baseActionAdd import add_schools, user_login
 from model.baseActionDel import del_school
 from model.baseActionModify import update_School
-from model.init import loginInfo
-
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-schools = [{'schoolName': u'¶şÖĞ', 'schoolType': u'¸ßÖĞ', 'schoolArea': u'Ö£ÖİÊĞ'},
-           {'schoolName': u'ÈıÖĞ', 'schoolType': u'ÖĞÑ§', 'schoolArea': u'Ö£ÖİÊĞ'},
-           {'schoolName': u'ËÄÖĞ', 'schoolType': u'ÖĞÑ§', 'schoolArea': u'¿ª·âÊĞ'},
-           {'schoolName': u'ÎåÖĞ', 'schoolType': u'Ğ¡Ñ§', 'schoolArea': u'¿ª·âÊĞ'},
-           {'schoolName': u'ÁùÖĞ', 'schoolType': u'Ğ¡Ñ§', 'schoolArea': u'¿ª·âÊĞ'},
-           {'schoolName': u'Ò»ÖĞ', 'schoolType': u'¸ßÖĞ', 'schoolArea': u'Ö£ÖİÊĞ'}]
-schoolData = [{'schoolName': u'ºÓÄÏÒ»ÖĞ','searchName':u'¶şÖĞ'}]
-schoolDel = [{'schoolName': u'ÈıÖĞ'},
-           {'schoolName': u'ËÄÖĞ'},
-           {'schoolName': u'ÎåÖĞ'},
-           {'schoolName': u'ÁùÖĞ'},
-           {'schoolName': u'Ò»ÖĞ'}]
+schools = [{'schoolName': u'äºŒä¸­', 'schoolType': u'é«˜ä¸­', 'schoolArea': u'éƒ‘å·å¸‚'},
+           {'schoolName': u'ä¸‰ä¸­', 'schoolType': u'ä¸­å­¦', 'schoolArea': u'éƒ‘å·å¸‚'},
+           {'schoolName': u'å››ä¸­', 'schoolType': u'ä¸­å­¦', 'schoolArea': u'å¼€å°å¸‚'},
+           {'schoolName': u'äº”ä¸­', 'schoolType': u'å°å­¦', 'schoolArea': u'å¼€å°å¸‚'},
+           {'schoolName': u'å…­ä¸­', 'schoolType': u'å°å­¦', 'schoolArea': u'å¼€å°å¸‚'},
+           {'schoolName': u'ä¸€ä¸­', 'schoolType': u'é«˜ä¸­', 'schoolArea': u'éƒ‘å·å¸‚'}]
+schoolData = [{'schoolName': u'æ²³å—ä¸€ä¸­', 'searchName': u'äºŒä¸­'}]
+schoolDel = [{'schoolName': u'ä¸‰ä¸­'},
+             {'schoolName': u'å››ä¸­'},
+             {'schoolName': u'äº”ä¸­'},
+             {'schoolName': u'å…­ä¸­'},
+             {'schoolName': u'ä¸€ä¸­'}]
 
 class schoolmanager(unittest.TestCase):
-    ''''Ñ§Ğ£¹ÜÀí'''
+    ''''å­¦æ ¡ç®¡ç†'''
 
     def setUp(self):
         if execEnv['execType'] == 'local':
             print "\n", "=" * 20, "local exec testcase", "=" * 19
             self.driver = webdriver.Chrome()
-            self.driver.implicitly_wait(8)
+            self.driver.implicitly_wait(20)
             self.verificationErrors = []
             self.accept_next_alert = True
             print "start tenantmanger..."
@@ -45,7 +44,7 @@ class schoolmanager(unittest.TestCase):
             print "\n", "=" * 20, "remote exec testcase", "=" * 18
             browser = webdriver.DesiredCapabilities.CHROME
             self.driver = webdriver.Remote(command_executor=execEnv['remoteUrl'], desired_capabilities=browser)
-            self.driver.implicitly_wait(8)
+            self.driver.implicitly_wait(20)
             self.verificationErrors = []
             self.accept_next_alert = True
             print "start tenantmanger..."
@@ -57,8 +56,8 @@ class schoolmanager(unittest.TestCase):
         print "=" * 60
 
     def test_addschool(self):
-        '''Ìí¼ÓÑ§Ğ£'''
-        print "Ö´ĞĞ£ºÌí¼ÓÑ§Ğ£²âÊÔ"
+        '''æ·»åŠ å­¦æ ¡'''
+        print "æ‰§è¡Œï¼šæ·»åŠ å­¦æ ¡æµ‹è¯•"
         driver = self.driver
         driver.refresh()
         sleep(2)
@@ -66,34 +65,35 @@ class schoolmanager(unittest.TestCase):
 
         for school in schools:
             add_schools(driver, **school)
-            self.assertEqual(u"Ìí¼Ó³É¹¦£¡", driver.find_element_by_css_selector(".layui-layer-content").text)
+            self.assertEqual(u"æ·»åŠ æˆåŠŸï¼", driver.find_element_by_css_selector(".layui-layer-content").text)
 
         sleep(0.5)
 
     def test_bsearch_school(self):
-        '''Ñ§Ğ£²éÑ¯'''
-        print "Ö´ĞĞ£ºÑ§Ğ£²éÑ¯"
+        '''å­¦æ ¡æŸ¥è¯¢'''
+        print "æ‰§è¡Œï¼šå­¦æ ¡æŸ¥è¯¢"
 
         try:
             driver = self.driver
             user_login(driver, **loginInfo)
 
-            driver.find_element_by_link_text(u"ÏµÍ³¹ÜÀí").click()
-            driver.find_element_by_link_text(u"Ñ§Ğ£¹ÜÀí").click()
+            driver.find_element_by_link_text(u"ç³»ç»Ÿç®¡ç†").click()
+            driver.find_element_by_link_text(u"å­¦æ ¡ç®¡ç†").click()
             sleep(1)
             driver.find_element_by_xpath("//input[@id='condition']").clear()
-            driver.find_element_by_xpath("//input[@id='condition']").send_keys(u"½ÌÓı¾Ö")
+            driver.find_element_by_xpath("//input[@id='condition']").send_keys(u"æ•™è‚²å±€")
             driver.find_element_by_xpath("//button[@id='searchbtn']").click()
             sleep(1)
-            self.assertEqual(u"ºÓÄÏÊ¡½ÌÓı¾Ö", driver.find_element_by_xpath(".//*[@id='schoolname']").text)
-            print "²éÑ¯Ñ§Ğ£³É¹¦¡£"
+            self.assertEqual(u"æ²³å—çœæ•™è‚²å±€", driver.find_element_by_xpath(".//*[@id='schoolname']").text)
+            print "æŸ¥è¯¢å­¦æ ¡æˆåŠŸã€‚"
         except Exception as e:
-            print "²éÑ¯Ñ§Ğ£Ê§°Ü¡£"
+            print "æŸ¥è¯¢å­¦æ ¡å¤±è´¥ã€‚"
+            print e
         sleep(1)
 
     def test_bupdate_school(self):
-        '''ĞŞ¸Äµ¥ÌõÑ§Ğ£Êı¾İ'''
-        print "Ö´ĞĞ£ºĞŞ¸Äµ¥ÌõÑ§Ğ£Êı¾İ"
+        '''ä¿®æ”¹å•æ¡å­¦æ ¡æ•°æ®'''
+        print "æ‰§è¡Œï¼šä¿®æ”¹å•æ¡å­¦æ ¡æ•°æ®"
         # try:
         driver = self.driver
         user_login(driver, **loginInfo)
@@ -101,42 +101,43 @@ class schoolmanager(unittest.TestCase):
             update_School(driver,**itms)
         sleep(1)
         # resultContent = driver.find_element_by_css_selector("div.layui-layer-content.firepath-matching-node").text
-        # self.assertEqual(u"ºÓÄÏÒ»ÖĞ", resultContent)
-        print "ĞŞ¸Äµ¥ÌõÑ§Ğ£Êı¾İ:³É¹¦¡£"
+        # self.assertEqual(u"æ²³å—ä¸€ä¸­", resultContent)
+        print "ä¿®æ”¹å•æ¡å­¦æ ¡æ•°æ®:æˆåŠŸã€‚"
     # except Exception as e:
-        print "ĞŞ¸Äµ¥ÌõÑ§Ğ£Êı¾İÊ§°Ü¡£"
+        print "ä¿®æ”¹å•æ¡å­¦æ ¡æ•°æ®å¤±è´¥ã€‚"
         sleep(1)
 
     def test_del_school_ok(self):
-        '''É¾³ıÑ§Ğ£_È·¶¨'''
-        print "Ö´ĞĞ£ºÉ¾³ıÑ§Ğ£_È·¶¨"
+        '''åˆ é™¤å­¦æ ¡_ç¡®å®š'''
+        print "æ‰§è¡Œï¼šåˆ é™¤å­¦æ ¡_ç¡®å®š"
         driver = self.driver
         user_login(driver, **loginInfo)
 
         for flag in schoolDel:
             del_school(driver,**flag)
-            # self.assertEqual(u"É¾³ı³É¹¦£¡", driver.find_element_by_css_selector(".layui-layer-content").text)
+            # self.assertEqual(u"åˆ é™¤æˆåŠŸï¼", driver.find_element_by_css_selector(".layui-layer-content").text)
         sleep(0.5)
 
     def test_del_school_cancel(self):
-        '''É¾³ıÑ§Ğ£_È¡Ïû'''
-        print "Ö´ĞĞ£ºÉ¾³ıÑ§Ğ£_È¡Ïû"
+        '''åˆ é™¤å­¦æ ¡_å–æ¶ˆ'''
+        print "æ‰§è¡Œï¼šåˆ é™¤å­¦æ ¡_å–æ¶ˆ"
         try:
             driver = self.driver
             user_login(driver, **loginInfo)
 
-            # add_school(driver, u'Ò»ÖĞ', u'¸ßÖĞ', u'Ö£ÖİÊĞ')
+            # add_school(driver, u'ä¸€ä¸­', u'é«˜ä¸­', u'éƒ‘å·å¸‚')
             sleep(0.5)
-            driver.find_element_by_link_text(u"ÏµÍ³¹ÜÀí").click()
-            driver.find_element_by_link_text(u"Ñ§Ğ£¹ÜÀí").click()
+            driver.find_element_by_link_text(u"ç³»ç»Ÿç®¡ç†").click()
+            driver.find_element_by_link_text(u"å­¦æ ¡ç®¡ç†").click()
             sleep(0.5)
             driver.find_element_by_xpath("//button[@id='delsc']").click()
             driver.find_element_by_css_selector("a.layui-layer-btn1").click()
-            self.assertEqual(u"Ò»ÖĞ", driver.find_element_by_xpath("//*[@id='schoolname']").text)
+            self.assertEqual(u"ä¸€ä¸­", driver.find_element_by_xpath("//*[@id='schoolname']").text)
             # print driver.find_element_by_xpath("//*[@id='schoolname']").text
-            print "É¾³ıÑ§Ğ£_È¡Ïû£º³É¹¦"
+            print "åˆ é™¤å­¦æ ¡_å–æ¶ˆï¼šæˆåŠŸ"
         except Exception as e:
-            print "É¾³ıÑ§Ğ£_È¡Ïû£ºÊ§°Ü"
+            print e
+            print "åˆ é™¤å­¦æ ¡_å–æ¶ˆï¼šå¤±è´¥"
 
         sleep(1)
 
@@ -144,6 +145,7 @@ class schoolmanager(unittest.TestCase):
         try:
             self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e:
+            print e
             return False
         return True
 
@@ -151,6 +153,7 @@ class schoolmanager(unittest.TestCase):
         try:
             self.driver.switch_to_alert()
         except NoAlertPresentException as e:
+            print e
             return False
         return True
 

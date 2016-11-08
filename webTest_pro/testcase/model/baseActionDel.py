@@ -1,12 +1,13 @@
 # coding=utf-8
-import os
 import sys
-
-sys.path.append(os.path.dirname(os.getcwd()))
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from time import sleep
-from init import base_url, loginInfo
+
+from selenium import webdriver
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import loginInfo
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

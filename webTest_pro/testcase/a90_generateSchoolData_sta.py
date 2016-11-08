@@ -1,17 +1,15 @@
 # coding=utf-8
-
-import os
 import sys
 import unittest
 
 from selenium import webdriver
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
-from model.init import execEnv
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo, classroom_para, db_conf
 from model.baseActionAdd import user_login, add_schools, \
     add_classrooms, add_terminals, add_integrateds, add_users
-from model.init import loginInfo, classroom_para, db_conf
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

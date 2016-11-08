@@ -1,17 +1,16 @@
 # coding=utf-8
-
-import os
 import sys
 import unittest
 from time import sleep
 
 from selenium import webdriver
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
-from model.init import execEnv
-from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, conf_mcu, add_MCUequipments
-from model.init import loginInfo, db_conf
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo, db_conf
+from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, \
+    conf_mcu, add_MCUequipments
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

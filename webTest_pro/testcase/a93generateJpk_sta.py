@@ -1,17 +1,14 @@
-# _*_ coding: utf-8 _*_
-"""
-__title__ = ""
-__auther__ = "acer"
-__mtime__ = "2016/10/24"
-"""
-
+# coding=utf-8
 import unittest
 
 from selenium import webdriver
 
+from _env import addPaths
+
+addPaths('.')
+from common.init import loginInfo
 from model.baseActionAdd import user_login, add_excellentClass
 from model.baseActionDel import del_excellentClass
-from model.init import loginInfo
 
 
 class excellentClass(unittest.TestCase):

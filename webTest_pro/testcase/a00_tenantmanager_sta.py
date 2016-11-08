@@ -1,16 +1,21 @@
 # coding: utf-8
-import os
 import sys
 import unittest
+from time import sleep
 
-sys.path.append(os.path.dirname(os.getcwd()))
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
-from time import sleep
+
+from _env import addPaths
+
+addPaths('.')
 from model.baseActionAdd import admin_login, add_tenants
 from model.baseActionSearch import search_tenant
 from model.baseActionModify import update_Tenant
-from model.init import execEnv
+from common.init import execEnv
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 tenantAdd = [{'areaid': "//div[@id='treeview']/ul/li[17]",'platmarkName':u'河南教育局','platmarkCode':'001'},
              {'areaid': "//div[@id='treeview']/ul/li[18]",'platmarkName':u'张三教育局','platmarkCode':'002'},
@@ -139,7 +144,6 @@ class tenantmanger(unittest.TestCase):
             return alert_text
         finally:
             self.accept_next_alert = True
-
 
 if __name__ == '__main__':
     unittest.main()

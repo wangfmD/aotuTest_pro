@@ -1,18 +1,19 @@
 # coding=utf-8
-import os
 import sys
 import unittest
+from time import sleep
 
-sys.path.append(os.path.dirname(os.getcwd()))
-sys.path.append(os.getcwd())
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
-from time import sleep
+
+from _env import addPaths
+
+addPaths('.')
+from common.init import execEnv, loginInfo
 from model.baseActionAdd import user_login, add_groupsubGrps
 from model.baseActionDel import del_subjectGrp
 from model.baseActionSearch import search_subjectGrp
 from model.baseActionModify import update_subjectGrp
-from model.init import loginInfo, execEnv
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -34,7 +35,7 @@ subjectsGroups = [{'groupName': u'计算机', 'groupCode': '001', 'description':
 searchsubjectGrps = [{'groupName': u'计算机'},
                      {'groupName': u'物理'}]
 
-modifysubjectsGroup = [{'groupName': u'计算机modif', 'groupCode': '0101', 'description': u'计算机modif','searchName':u'计算机'}]
+modifysubjectsGroup = [{'groupName': u'计算机modif', 'groupCode': '0101', 'description': u'计算机modif', 'searchName': u'计算机'}]
 
 
 class schoolgroupmanager(unittest.TestCase):
@@ -88,7 +89,7 @@ class schoolgroupmanager(unittest.TestCase):
                              driver.find_element_by_xpath("//table[@id='SchoolGroupmodaltab']/tbody/tr/td").text)
         print "exec test_bsearch_subjectgrp success"
         sleep(0.5)
-		
+
     def test_bupdate_subjectgrp(self):
         '''修改组管理'''
         print "exec：test_bupdate_subjectgrp"
@@ -99,7 +100,6 @@ class schoolgroupmanager(unittest.TestCase):
             update_subjectGrp(driver, **itme)
         print "exec test_bupdate_subjectgrp success"
         sleep(0.5)
-
 
     def test_del_subjectgrp_ok(self):
         '''删除科目组_确定'''
