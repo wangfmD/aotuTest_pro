@@ -9,7 +9,7 @@ from init import db_conf
 # print dir(MySQLdb.cursors)
 
 # mysql setting
-host = '10.1.0.57'
+host = '10.1.0.56'
 hostadd = db_conf['hostadd']
 user = 'root'
 passwd = 'Sanbu@123456'
@@ -54,12 +54,12 @@ class sqlOperating:
         try:
             cur.execute(sql)
             self.con.commit()
-            print 'a'
+            print 'update success.'
         except:
             self.con.rollback()
-            print 'b'
+            print 'update failed.'
         self.con.close()
-        print 'c'
+        print 'closed connection.'
 if __name__ == '__main__':
     # sql = ["UPDATE base_sys_config set CONFIG_VALUE = '%s' where CONFIG_KEY = 'live_server_url'" % 'rtmp://' + hostadd + ':1935/live/',
     #        "UPDATE base_sys_config set CONFIG_VALUE = '%s' where CONFIG_KEY = 'web_server_resource'" % 'http://' + hostadd,

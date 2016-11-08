@@ -48,6 +48,17 @@ class excellentClass(unittest.TestCase):
         del_excellentClass(driver)
         print "exec:excellentLesson end."
 
+    def test_add_jpk(self):
+        '''生成精品课堂数'''
+
+        print "exec: generate jplk start..."
+        driver = self.driver
+        user_login(driver, **loginInfo)
+
+        add_excellentClass(driver)
+        print "exec: generate jpk end."
+
+
 
 if __name__ == '__main__':
     unittest.main()

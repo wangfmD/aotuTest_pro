@@ -15,10 +15,10 @@ sys.setdefaultencoding("utf-8")
 
 def admin_login(driver):
     """
-      administrator login
-      Args: web driver
-      -
-      Usage: admin_login(driver)
+    administrator login
+    Args: web driver
+    -
+    Usage: admin_login(driver)
 
     """
     # open url
@@ -37,10 +37,10 @@ def admin_login(driver):
 
 def user_login(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     print "loginfo:\nuser:{0}，platform:{1}".format(kwargs['username'], kwargs['platformname'])
@@ -61,10 +61,10 @@ def user_login(driver, **kwargs):
 
 def add_tenants(driver, **kwargs):
     """
-      添加租户
-      Args:administrator operate
-      -
-      Usage: add_tenants(driver)
+    添加租户
+    Args:administrator operate
+    -
+    Usage: add_tenants(driver)
 
     """
     print "add tenant info: 河南教育局"
@@ -112,10 +112,10 @@ schools = [{'schoolName': u'二中', 'schoolType': u'高中', 'schoolArea': u'�
 
 def add_schools(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:schoolName,schoolType,schoolArea
@@ -160,10 +160,10 @@ classromms = [{'className': '31className', 'classAccNumber': '1'},
 
 def add_classrooms(driver, **kwargs):
     """
-      添加教室组
-      Args:
-      -
-      Usage:
+    添加教室组
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -205,10 +205,10 @@ terminals = [
 
 def add_terminals(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:       {'equipmentModel': u'Group系列',
@@ -271,10 +271,10 @@ def add_terminals(driver, **kwargs):
 
 def add_integrateds(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
     """
     # para:
     '''添加一体机'''
@@ -332,10 +332,10 @@ subjectsGroups = [{'groupName': u'计算机', 'groupCode': '001', 'description':
 
 def add_groupsubGrps(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -374,10 +374,10 @@ users = [{'loginName': 'user', 'trueName': 'teacher'},
 
 def add_users(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # pra: loginName, trueName
@@ -422,10 +422,10 @@ roles = [{'roleName': 'a2role19', 'roleCode': '000', 'description': 'comment rol
 
 def add_roles(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para: driver,roleName, roleCode, description
@@ -461,10 +461,10 @@ interactgrps = [{'grpName': 'grp1', 'schoolgrTypeId': u'课程组'},
 
 def add_interactgrps(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:grpName,schoolgrTypeId
@@ -505,10 +505,10 @@ subjects = [{'subjectName': u'书法', 'description': u'学习中国文化'},
 
 def add_subjects(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -548,10 +548,10 @@ chapters = [{'gradeid': u"二年级", 'subjectid': u"数学", 'chapterName': u'�
 
 def add_chapters(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -593,10 +593,10 @@ sections = [{'gradeid': u"二年级", 'subjectid': u"数学", 'chapterid': "zmc1
 
 def add_sections(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -638,10 +638,10 @@ knowledges = [{'gradeid': u'六年级/小学', 'subjectid': u'自然科学', 'ch
 
 def add_knowledges(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -684,10 +684,10 @@ MCUequipments = [{'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.85', 'mcu_por
 
 def add_MCUequipments(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:equipmentName，equipIpAddr，mcu_port，mcuLoginName，mcuPasswd
@@ -733,10 +733,10 @@ def add_MCUequipments(driver, **kwargs):
 
 def conf_mcu(driver):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # driver = webdriver.Chrome()
@@ -782,10 +782,10 @@ interacts = [{'host': '10.1.0.2', 'port': '80', 'username': 'administrator', 'pa
 
 def add_interacts(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:host,port,username,password
@@ -821,10 +821,10 @@ def add_interacts(driver, **kwargs):
 
 def conf_local_interact(driver, interactaddr):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # open url
@@ -870,10 +870,10 @@ def conf_local_interact(driver, interactaddr):
 
 def conf_child_interact(driver, interactaddr, serveraddr):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     #     //tbody[@id='selectLocal']/tr/td     //input[@name='text']  			//tbody[@id='selectLocal']/tr/td[4]/input     10.1.0.45
@@ -987,10 +987,10 @@ listener_lesson_cfgs = [{'name': u'听讲下课'}, {'name': u'听讲下课_1'}]
 
 def add_cfg_listener_lessons(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:name
@@ -1021,10 +1021,10 @@ def add_cfg_listener_lessons(driver, **kwargs):
 
 def add_cfg_speaker_lessons(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:name
@@ -1055,10 +1055,10 @@ def add_cfg_speaker_lessons(driver, **kwargs):
 
 def add_cfg_conferences(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:name
@@ -1089,10 +1089,10 @@ def add_cfg_conferences(driver, **kwargs):
 
 def add_cfg_jpks(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:name
@@ -1123,10 +1123,10 @@ def add_cfg_jpks(driver, **kwargs):
 
 def add_cfg_hdks(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:name
@@ -1163,10 +1163,10 @@ emails = [{'smtp': 'smtp.162.com', 'fromName': 'haosea@qq.com', 'password': '111
 
 def add_emails(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -1204,10 +1204,10 @@ def add_emails(driver, **kwargs):
 
 def add_tmp(driver, **kwargs):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     # para:
@@ -1241,10 +1241,10 @@ def add_tmp(driver, **kwargs):
 
 def add_lesson(driver):
     """
-      Func desc
-      Args:
-      -
-      Usage:
+    Func desc
+    Args:
+    -
+    Usage:
 
     """
     '''添加互动课'''
@@ -1330,10 +1330,14 @@ def add_lesson(driver):
 
 def add_excellentClass(driver):
     """
-      add jpk
-      Args: web driver
-      Usage: add_excellentClass(driver)
+    Func descriptions: add jpk
+    Args: add_excellentClass()
+    Return: None
+    Usage: add_excellentClass(drvier)
+    Author: wangfm
+    Date: 2016-11-03 10:10:25
     """
+
     print "add jpk."
 
     try:
@@ -1396,7 +1400,11 @@ def add_excellentClass(driver):
         print "add jpk failed."
 
 
+
+
 if __name__ == '__main__':
-    driver = webdriver.Chrome()
+    #driver = webdriver.Chrome()
     # user_login(driver, **loginInfo)
-    conf_child_interact(driver, '10.1.0.45', '10.1.0.56')
+    #conf_child_interact(driver, '10.1.0.45', '10.1.0.56')
+    for path in sys.path:
+        print path

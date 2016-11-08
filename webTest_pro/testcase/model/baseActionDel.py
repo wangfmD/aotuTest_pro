@@ -165,7 +165,7 @@ def del_interactgrp(driver):
     driver.find_element_by_link_text(u"系统管理").click()
     driver.find_element_by_link_text(u"互动组管理").click()
     sleep(0.5)
-    # click add btn 
+    # click add btn
     driver.find_element_by_xpath("//button[@id='delsc']").click()
     sleep(0.5)
     # click ok button
@@ -272,7 +272,7 @@ def del_section(driver, **kwargs):
         print "delete {} failed.".format(kwargs['sectionName'])
 
 knowledges = [{'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"双细胞", 'knowledgeCode': u"双细胞1"},
-              {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]        
+              {'gradeid': u'一年级/小学', 'subjectid': u'语文', 'chapterid': u'语文第一章', 'sectionid': u"第一节", 'knowledgeName': u"多细胞", 'knowledgeCode': u"多细胞1"}]
 
 def del_knowledge(driver, **kwargs): # para:
     '''删除知识点'''
@@ -488,7 +488,7 @@ def del_cfg_listener_lessons(driver, **kwargs):
     except Exception as e:
         print e
         print "delete {} failed.".format(kwargs['name'])
-        
+
 
 def del_cfg_speaker_lessons(driver, **kwargs):
     # para:name

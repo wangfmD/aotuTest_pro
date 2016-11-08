@@ -78,17 +78,6 @@ class tenantmanger(unittest.TestCase):
         self.assertEqual(u"无数据", driver.find_element_by_xpath("//*[@id='tenantmanager']/tbody/tr/td").text)
         print "exec: test_search_tenant_no_existent OK"
 
-    def test_bsearch_tenant_no_existent(self):
-        '''查询租户_不存在'''
-        print "exec: test_search_tenant_no_existent..."
-        driver = self.driver
-        condition = {'condition': 'dafa'}
-        admin_login(driver)
-        search_tenant(driver, **condition)
-        # print driver.find_element_by_xpath("//*[@id='tenantmanager']/tbody/tr/td").text
-        self.assertEqual(u"无数据", driver.find_element_by_xpath("//*[@id='tenantmanager']/tbody/tr/td").text)
-        print "exec: test_search_tenant_no_existent OK"
-
     def test_bupdate_Tenant(self):
         '''修改单条租户管理'''
         print "exec: test_update_Tenant..."

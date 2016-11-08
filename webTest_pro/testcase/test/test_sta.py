@@ -4,6 +4,9 @@ import os
 import sys
 import unittest
 
+from webTest_pro.testcase.test._env import addPaths
+from webTest_pro.testcase.model.init import base_url
+
 sys.path.append(os.path.dirname(os.getcwd()))
 
 tenantData = [{'platmarkName': u'河南教育局','platmarkCode':'001'}]
@@ -24,4 +27,7 @@ class tenantmanger(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    addPaths()
+    print base_url
+    for path in sys.path:
+        print path
