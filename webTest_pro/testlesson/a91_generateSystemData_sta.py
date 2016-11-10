@@ -1,4 +1,4 @@
-# coding=utf-8
+#  coding=utf-8
 import sys
 import unittest
 from time import sleep
@@ -9,24 +9,44 @@ from _env import addPaths
 
 addPaths('.')
 from common.init import execEnv, loginInfo, db_conf
-from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, \
-    conf_mcu, add_MCUequipments
+from model.baseActionAdd import user_login, add_interacts, conf_local_interact, \
+    conf_child_interact, add_MCUequipments, conf_drivers_local
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-users = [{'loginName': 'user', 'trueName': 'teacher'},
-         {'loginName': 'user1', 'trueName': 'teacher1'}]
+users = [{'loginName': 'user',
+          'trueName': 'teacher'},
+         {'loginName': 'user1',
+          'trueName': 'teacher1'}]
 
-MCUequipments = [{'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.85', 'mcu_port': '80', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'},
-                 {'equipmentName': '95mcu', 'equipIpAddr': '10.1.0.95', 'mcu_port': '10000', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'}]
+MCUequipments = [{'equipmentName': '85mcu',
+                  'equipIpAddr': '10.1.0.85',
+                  'mcu_port': '80',
+                  'mcuLoginName': 'POLYCOM',
+                  'mcuPasswd': 'POLYCOM'},
+                 {'equipmentName': '95mcu',
+                  'equipIpAddr': '10.1.0.95',
+                  'mcu_port': '10000',
+                  'mcuLoginName': 'POLYCOM',
+                  'mcuPasswd': 'POLYCOM'}]
 
 middle_interact_ip = db_conf['hostadd']
 child_interact_ip = '10.1.0.58'
-middle_interacts = {'host': middle_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
-child_interacts = {'host': child_interact_ip, 'port': '80', 'username': 'administrator', 'password': 'xungejiaoyu'}
+middle_interacts = {'host': middle_interact_ip,
+                    'port': '80',
+                    'username': 'administrator',
+                    'password': 'xungejiaoyu'}
+child_interacts = {'host': child_interact_ip,
+                   'port': '80',
+                   'username': 'administrator',
+                   'password': 'xungejiaoyu'}
 
-MCUequipment = {'equipmentName': '85mcu', 'equipIpAddr': '10.1.0.85', 'mcu_port': '80', 'mcuLoginName': 'POLYCOM', 'mcuPasswd': 'POLYCOM'}
+MCUequipment = {'equipmentName': '85mcu',
+                'equipIpAddr': '10.1.0.85',
+                'mcu_port': '80',
+                'mcuLoginName': 'POLYCOM',
+                'mcuPasswd': 'POLYCOM'}
 
 schools = []
 school = {}
@@ -67,7 +87,8 @@ class generateSystemData(unittest.TestCase):
 
         for MCUequipment in MCUequipments:
             add_MCUequipments(driver, **MCUequipment)
-            self.assertEqual(u"保存成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
+            self.assertEqual(u"保存成功！", driver.find_element_by_css_selector /
+                             (".layui-layer-content").text)
         sleep(0.5)
         print "exec：test_add_MCUequipments success."
 
@@ -94,9 +115,10 @@ class generateSystemData(unittest.TestCase):
         print 'Exec:test_confChildInteract...'
         driver = self.driver
         user_login(driver, **loginInfo)
-        # add_MCUequipments(driver, **MCUequipment)
-        conf_mcu(driver)
+        conf_drivers_local(driver)
+        # conf_drivers_child(driver)
         print 'exec:test_confChildInteract end.'
+
 
 if __name__ == '__main__':
     unittest.main()
