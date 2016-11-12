@@ -50,7 +50,7 @@ class interActiveTeachingMgr(unittest.TestCase):
         driver = self.driver
         user_login(driver, **loginInfo)
         add_lesson(driver)
-        sleep(500)
+        sleep(4)
 
         print "exec：test_add_hdk success."
 

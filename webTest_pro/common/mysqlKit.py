@@ -9,7 +9,7 @@ from init import db_conf
 # print dir(MySQLdb.cursors)
 
 # mysql setting
-host = '10.1.0.56'
+host = '10.1.0.46'
 hostadd = db_conf['hostadd']
 user = 'root'
 passwd = 'Sanbu@123456'

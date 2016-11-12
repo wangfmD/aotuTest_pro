@@ -520,44 +520,6 @@ def add_users(driver, **kwargs):
         print e
 
 
-def add_userswithschool(driver, **kwargs):
-    """
-    Func desc
-    Args:
-    -
-    Usage:
-
-    """
-    # pra: loginName, trueName
-    '''添加用户'''
-    print "添加用户的信息：{0},{1}".format(kwargs['loginName'], kwargs['trueName'])
-    try:
-        # driver.find_element_by_css_selector("#div_menu > ul.nav.nav-list > li > a.dropdown-toggle > span.menu-text").click()
-        driver.refresh()
-        driver.find_element_by_link_text(u"系统管理").click()
-        driver.find_element_by_link_text(u"用户列表").click()
-        driver.find_element_by_id("adduserlist").click()
-        sleep(1)
-        driver.find_element_by_name("loginName").clear()
-        driver.find_element_by_name("loginName").send_keys(kwargs['loginName'])
-        driver.find_element_by_name("pwd").clear()
-        driver.find_element_by_name("pwd").send_keys("111111")
-        driver.find_element_by_name("passwords").clear()
-        driver.find_element_by_name("passwords").send_keys("111111")
-        driver.find_element_by_name("mobile").clear()
-        driver.find_element_by_name("mobile").send_keys("13700010001")
-        driver.find_element_by_name("email").clear()
-        driver.find_element_by_name("email").send_keys("user@3bu.cn")
-        driver.find_element_by_name("trueName").clear()
-        driver.find_element_by_name("trueName").send_keys(kwargs['trueName'])
-        driver.find_element_by_id("determine").click()
-        sleep(1)
-        print "添加用户{0}成功。".format(kwargs['trueName'])
-    except Exception as e:
-        print "添加用户{0}失败。".format(kwargs['trueName'])
-        print e
-
-
 roles = [{
     'roleName': 'a2role19',
     'roleCode': '000',

@@ -30,11 +30,12 @@ from common.mysqlKit import sqlOperating
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-# host = db_conf['host']
+host = '10.1.0.46'
 # 设置日志信息
 #  LOG_INIT('log.log')
 #  logger = LOG_MODULE_DEFINE('Platform')
 #  SET_LOG_LEVEL(logger, 'info')
+
 
 def queryLessonInfo(lessonName):
     """
@@ -61,7 +62,7 @@ def queryLessonInfo(lessonName):
     return lessonInfo
 
 
-def beginJpk(driver,*args):
+def beginJpk(driver, *args):
     """
       Func descriptions: 上精品课
       Args: webdriver
@@ -73,7 +74,7 @@ def beginJpk(driver,*args):
 
     # user_login(driver, **loginInfo)
     lessonInfo = queryLessonInfo(args[0])
-    lessonUrl = '/middleclient/pcManager/LessonPage.do?typeCode=1402&lessonId=' + lessonInfo['lessonId']+ '&isZhu=1&classroomId=' + \
+    lessonUrl = '/middleclient/pcManager/LessonPage.do?typeCode=1402&lessonId=' + lessonInfo['lessonId'] + '&isZhu=1&classroomId=' + \
         lessonInfo['classroomId'] + '&interactType=false&created=0'
     print lessonUrl
     # get ip address from login URL
@@ -84,6 +85,7 @@ def beginJpk(driver,*args):
     print "TRACK ================= start"
     driver.find_element_by_xpath("//button[@id='pc_startButton']").click()
     print "end"
+
 
 def beginConference(driver):
     """
@@ -101,7 +103,7 @@ def beginConference(driver):
     #  conferenceUrl = ''
 
 
-def login():
+def beginHdk():
     sql = "select ID,CLASSROOM_ID,CONFERENCE_ID from interact_teach_lesson where LESSON_NAME='hdk_long'"
     c_query = sqlOperating()
     result = c_query.execQury(sql)
@@ -115,7 +117,8 @@ def login():
         CONFERENCE_ID = lie['CONFERENCE_ID']
         print lessonId, classroomId, CONFERENCE_ID
 
-    h_ip = base_url
+    # h_ip = http://10.1.0.46
+    h_ip = 'http://10.1.0.46'
     urlplus = '/interactbusiness/api/v1.0/mcu/checkLessonMcus'
 
     access_str = getAccesssToken(host)
@@ -139,7 +142,8 @@ def login():
         print requestDisconn, requestConn
         driver = webdriver.Chrome()
         driver.implicitly_wait(30)
-        # base_url = "http://10.1.0.57"
+        base_url = "http://10.1.0.46"
+
         # driver.get(base_url + plus_url)
         driver.get(base_url + "/middleclient/index.do")
         Select(driver.find_element_by_id("platform")).select_by_visible_text(
@@ -168,26 +172,26 @@ def login():
             except StaleElementReferenceException as e:
                 print e
             sleep(2)
-            # try:
-            #     driver.find_element_by_xpath(requestDisconn + "[4]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(3)
-            # try:
-            #     driver.find_element_by_xpath(requestDisconn + "[5]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(2)
-            # try:
-            #     driver.find_element_by_xpath(requestDisconn + "[6]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
+            try:
+                driver.find_element_by_xpath(requestDisconn + "[4]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(3)
+            try:
+                driver.find_element_by_xpath(requestDisconn + "[5]").click()
+            except StaleElementReferenceException as e:
+                print e
             sleep(2)
-            # try:
-            #     driver.find_element_by_xpath("(//button[@id='requestDisconn_0000'])[7]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(2)
+            try:
+                driver.find_element_by_xpath(requestDisconn + "[6]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(2)
+            try:
+                driver.find_element_by_xpath("(//button[@id='requestDisconn_0000'])[7]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(2)
             try:
                 driver.find_element_by_xpath(requestDisconn).click()
             except StaleElementReferenceException as e:
@@ -208,25 +212,25 @@ def login():
             except StaleElementReferenceException as e:
                 print e
             sleep(2)
-            # try:
-            #     driver.find_element_by_xpath(requestConn + "[4]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(2)
-            # try:
-            #     driver.find_element_by_xpath(requestConn + "[5]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(2)
-            # try:
-            #     driver.find_element_by_xpath(requestConn + "[6]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
-            # sleep(2)
-            # try:
-            #     driver.find_element_by_xpath("(//button[@id='requestConn_0000'])[7]").click()
-            # except StaleElementReferenceException as e:
-            #     print e
+            try:
+                driver.find_element_by_xpath(requestConn + "[4]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(2)
+            try:
+                driver.find_element_by_xpath(requestConn + "[5]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(2)
+            try:
+                driver.find_element_by_xpath(requestConn + "[6]").click()
+            except StaleElementReferenceException as e:
+                print e
+            sleep(2)
+            try:
+                driver.find_element_by_xpath("(//button[@id='requestConn_0000'])[7]").click()
+            except StaleElementReferenceException as e:
+                print e
             sleep(15)
 
         sleep(300000)
@@ -235,7 +239,6 @@ def login():
         sleep(10)
     else:
         print "上课信息为空！"
-
 
 
 #  if __name__ == '__main__':
@@ -261,5 +264,6 @@ if __name__ == '__main__':
 
     # print(queryLessonInfo('jpk'))
 
-    for path in sys.path:
-        print path
+    # for path in sys.path:
+    #     print path
+    beginHdk()

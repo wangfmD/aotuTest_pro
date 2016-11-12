@@ -8,45 +8,57 @@ from selenium import webdriver
 from _env import addPaths
 
 addPaths('.')
-from common.init import execEnv, loginInfo, db_conf
+from common.init import execEnv, loginInfo, db_conf, child_interact_ip
 from model.baseActionAdd import user_login, add_interacts, conf_local_interact, \
     conf_child_interact, add_MCUequipments, conf_drivers_local
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-users = [{'loginName': 'user',
-          'trueName': 'teacher'},
-         {'loginName': 'user1',
-          'trueName': 'teacher1'}]
+users = [{
+    'loginName': 'user',
+    'trueName': 'teacher'
+}, {
+    'loginName': 'user1',
+    'trueName': 'teacher1'
+}]
 
-MCUequipments = [{'equipmentName': '85mcu',
-                  'equipIpAddr': '10.1.0.85',
-                  'mcu_port': '80',
-                  'mcuLoginName': 'POLYCOM',
-                  'mcuPasswd': 'POLYCOM'},
-                 {'equipmentName': '95mcu',
-                  'equipIpAddr': '10.1.0.95',
-                  'mcu_port': '10000',
-                  'mcuLoginName': 'POLYCOM',
-                  'mcuPasswd': 'POLYCOM'}]
+MCUequipments = [{
+    'equipmentName': '85mcu',
+    'equipIpAddr': '10.1.0.85',
+    'mcu_port': '80',
+    'mcuLoginName': 'POLYCOM',
+    'mcuPasswd': 'POLYCOM'
+}, {
+    'equipmentName': '95mcu',
+    'equipIpAddr': '10.1.0.95',
+    'mcu_port': '10000',
+    'mcuLoginName': 'POLYCOM',
+    'mcuPasswd': 'POLYCOM'
+}]
 
 middle_interact_ip = db_conf['hostadd']
-child_interact_ip = '10.1.0.58'
-middle_interacts = {'host': middle_interact_ip,
-                    'port': '80',
-                    'username': 'administrator',
-                    'password': 'xungejiaoyu'}
-child_interacts = {'host': child_interact_ip,
-                   'port': '80',
-                   'username': 'administrator',
-                   'password': 'xungejiaoyu'}
+child_interact_ip = child_interact_ip
+middle_interacts = {
+    'host': middle_interact_ip,
+    'port': '80',
+    'username': 'administrator',
+    'password': 'xungejiaoyu'
+}
+child_interacts = {
+    'host': child_interact_ip,
+    'port': '80',
+    'username': 'administrator',
+    'password': 'xungejiaoyu'
+}
 
-MCUequipment = {'equipmentName': '85mcu',
-                'equipIpAddr': '10.1.0.85',
-                'mcu_port': '80',
-                'mcuLoginName': 'POLYCOM',
-                'mcuPasswd': 'POLYCOM'}
+MCUequipment = {
+    'equipmentName': '85mcu',
+    'equipIpAddr': '10.1.0.85',
+    'mcu_port': '80',
+    'mcuLoginName': 'POLYCOM',
+    'mcuPasswd': 'POLYCOM'
+}
 
 schools = []
 school = {}
@@ -66,7 +78,9 @@ class generateSystemData(unittest.TestCase):
         else:
             print "\n", "=" * 20, "remote exec testcase", "=" * 18
             browser = webdriver.DesiredCapabilities.CHROME
-            self.driver = webdriver.Remote(command_executor=execEnv['remoteUrl'], desired_capabilities=browser)
+            self.driver = webdriver.Remote(
+                command_executor=execEnv['remoteUrl'],
+                desired_capabilities=browser)
             self.driver.implicitly_wait(8)
             self.verificationErrors = []
             self.accept_next_alert = True
@@ -101,14 +115,14 @@ class generateSystemData(unittest.TestCase):
         conf_local_interact(driver, middle_interact_ip)
         print 'exec:test_confLocalInteract end.'
 
-    def test_confChildInteract(self):
-        '''配置节点中间件'''
-        print 'exec:test_confChildInteract...'
-        driver = self.driver
-        user_login(driver, **loginInfo)
-        add_interacts(driver, **child_interacts)
-        conf_child_interact(driver, child_interact_ip, middle_interact_ip)
-        print 'exec:test_confChildInteract end.'
+    # def test_confChildInteract(self):
+        # '''配置节点中间件'''
+        # print 'exec:test_confChildInteract...'
+        # driver = self.driver
+        # user_login(driver, **loginInfo)
+        # add_interacts(driver, **child_interacts)
+        # conf_child_interact(driver, child_interact_ip, middle_interact_ip)
+        # print 'exec:test_confChildInteract end.'
 
     def test_confMCU(self):
         '''配置节点中间件'''
@@ -120,5 +134,16 @@ class generateSystemData(unittest.TestCase):
         print 'exec:test_confChildInteract end.'
 
 
+def test_MCUequipments():
+    """TODO: Docstring for test_.
+
+    :arg1: TODO
+    :returns: TODO
+
+    """
+    for MCUequipment in MCUequipments:
+        print MCUequipment
+
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
+    # test_MCUequipments()

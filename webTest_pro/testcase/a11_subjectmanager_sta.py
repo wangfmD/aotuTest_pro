@@ -9,19 +9,31 @@ from selenium.common.exceptions import NoAlertPresentException, NoSuchElementExc
 from _env import addPaths
 
 addPaths('.')
-from common.init import execEnv
+from common.init import execEnv, loginInfo
 from model.baseActionAdd import user_login, add_subjects
 from model.baseActionDel import del_subject
-from  model.baseActionSearch import search_subject
-from  model.baseActionModify import update_Subjects
+from model.baseActionSearch import search_subject
+from model.baseActionModify import update_Subjects
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-subjects = [{'subjectName': u'书法', 'description': u'学习中国文化'},
-            {'subjectName': u'计算机', 'description': u'计算机基础应用'}]
-subjectsData = [{'subjectName': u'测试科目名称','description':u'描述说明','searchName':u'书法'},
-                {'subjectName': u'书法', 'description': u'描述说明', 'searchName': u'测试科目名称'}]
+subjects = [{
+    'subjectName': u'书法',
+    'description': u'学习中国文化'
+}, {
+    'subjectName': u'计算机',
+    'description': u'计算机基础应用'
+}]
+subjectsData = [{
+    'subjectName': u'测试科目名称',
+    'description': u'描述说明',
+    'searchName': u'书法'
+}, {
+    'subjectName': u'书法',
+    'description': u'描述说明',
+    'searchName': u'测试科目名称'
+}]
 
 
 class subjectmanager(unittest.TestCase):
@@ -38,7 +50,9 @@ class subjectmanager(unittest.TestCase):
         else:
             print "\n", "=" * 20, "remote exec testcase", "=" * 18
             browser = webdriver.DesiredCapabilities.CHROME
-            self.driver = webdriver.Remote(command_executor=execEnv['remoteUrl'], desired_capabilities=browser)
+            self.driver = webdriver.Remote(
+                command_executor=execEnv['remoteUrl'],
+                desired_capabilities=browser)
             self.driver.implicitly_wait(8)
             self.verificationErrors = []
             self.accept_next_alert = True
@@ -59,7 +73,9 @@ class subjectmanager(unittest.TestCase):
 
         for subject in subjects:
             add_subjects(driver, **subject)
-            self.assertEqual(u"添加成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
+            self.assertEqual(u"添加成功！",
+                             driver.find_element_by_css_selector(
+                                 ".layui-layer-content").text)
         sleep(0.5)
         print "exec：test_add_subjects success."
 
@@ -72,8 +88,10 @@ class subjectmanager(unittest.TestCase):
 
         for subject in subjects:
             search_subject(driver, **subject)
-            self.assertEqual(subject['subjectName'],
-                             driver.find_element_by_xpath("//table[@id='subjecttable']/tbody/tr/td[2]").text)
+            self.assertEqual(
+                subject['subjectName'],
+                driver.find_element_by_xpath(
+                    "//table[@id='subjecttable']/tbody/tr/td[2]").text)
         print "exec: test_bsearch_subjects success."
         sleep(0.5)
 
@@ -89,7 +107,6 @@ class subjectmanager(unittest.TestCase):
         print "exec: test_bupdate_subjects success."
         sleep(0.5)
 
-
     def test_del_subjects_ok(self):
         '''删除科目_确定'''
         print "exec：test_del_subjects_ok..."
@@ -100,7 +117,9 @@ class subjectmanager(unittest.TestCase):
         for subject in subjects:
             del_subject(driver, **subject)
             sleep(1.5)
-            self.assertEqual(u"删除成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
+            self.assertEqual(u"删除成功！",
+                             driver.find_element_by_css_selector(
+                                 ".layui-layer-content").text)
             sleep(0.5)
 
         print "exec：test_del_subjects_ok success."

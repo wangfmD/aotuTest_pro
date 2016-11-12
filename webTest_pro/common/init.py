@@ -42,7 +42,7 @@ for s in sections:
         classroom_tmp.append(s)
     if s.lower().find('basedata') != -1:
         base_url = 'http://' + cf.get(s, 'addr')
-        interact_1 = cf.get(s, 'interact_1')
+        child_interact_ip = cf.get(s, 'interact_1')
         loginInfo.setdefault('username',cf.get(s,'username'))
         loginInfo.setdefault('platformname',cf.get(s,'platformname'))
     if s.lower().find('db_conf') != -1:

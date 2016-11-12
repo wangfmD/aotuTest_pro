@@ -91,21 +91,6 @@ class generateSystemData(unittest.TestCase):
             classroom.setdefault('equimenttype', classroomTmp['equimenttype'].decode('utf-8'))
             classrooms.append(classroom)
         print classrooms
-        # 获取终端数据
-        # terminals = []
-        # terminal = {}
-        # for classroomTmp in classroom_para:
-        #     terminal = {}
-        #     terminal.setdefault('equipmentModel', classroomTmp['equipmentmodel'].decode('utf-8'))
-        #     terminal.setdefault('className', classroomTmp['classname'].decode('utf-8'))
-        #     terminal.setdefault('equipment_name', classroomTmp['equipment_name'].decode('utf-8'))
-        #     terminal.setdefault('ipAddr', classroomTmp['ipaddr'].decode('utf-8'))
-        #     terminal.setdefault('locAddr', classroomTmp['ipaddr'].decode('utf-8'))
-        #     terminal.setdefault('equipmentLogName', 'admin')
-        #     terminal.setdefault('equipmentLogPwd', 'admin')
-        #     terminal.setdefault('equimenttype', classroomTmp['equimenttype'].decode('utf-8'))
-        #     terminals.append(terminal)
-        # print terminals
 
         driver = self.driver
         user_login(driver, **loginInfo)
@@ -113,6 +98,8 @@ class generateSystemData(unittest.TestCase):
         for school in schools:
             # 添加学校
             add_schools(driver, **school)
+            for user in users:
+                add_users(driver, **user)
             for classroom in classrooms:
                 # 添加教室
                 if classroom['schoolid'] == school['schoolName']:
@@ -124,16 +111,16 @@ class generateSystemData(unittest.TestCase):
                     else:
                         add_terminals(driver, **classroom)
         print 'exec: test_agenerateSchoolInfo end.'
-        
-    def test_bgenerateTeacherInfo(self):
-        '''生成教师信息'''
-        print 'exec: test_generateTeacherInfo...'
-        driver = self.driver
-        user_login(driver, **loginInfo)
-        for user in users:
-            add_users(driver, **user)
 
-        print 'exec: test_generateTeacherInfo end.'
-        
+    # def test_bgenerateTeacherInfo(self):
+    #     '''生成教师信息'''
+    #     print 'exec: test_generateTeacherInfo...'
+    #     driver = self.driver
+    #     user_login(driver, **loginInfo)
+    #     for user in users:
+    #         add_users(driver, **user)
+    #
+    #     print 'exec: test_generateTeacherInfo end.'
+
 if __name__ == '__main__':
     unittest.main()
