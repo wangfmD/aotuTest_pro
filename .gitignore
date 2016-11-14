@@ -3,3 +3,4 @@ workspace.xml
 .idea
 *.html
 *.log
+*.bat

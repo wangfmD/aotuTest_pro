@@ -1,5 +1,5 @@
-E:
-cd E:\project\aotuTest_pro\webTest_pro\
+G:
+cd G:\00project\aotuTest_pro\webTest_pro\testcase\
 dir
-python TestRunner.py
+python RunnerMail.py
 PAUSE

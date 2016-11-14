@@ -34,7 +34,7 @@ else:
     os.mkdir(reportPath)
 
 # print  reportPath
-test_dir = './test/'
+test_dir = '.'
 discover = unittest.defaultTestLoader.discover(test_dir, pattern='*_sta.py')
 
 #  receiver = 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn;'  # 收件人地址，多人以分号分隔
@@ -48,4 +48,4 @@ if __name__ == '__main__':
     runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
     runner.run(discover)
     fp.close()
-    sendReportWithAtt(filename, receiver)
+    # sendReportWithAtt(filename, receiver)
