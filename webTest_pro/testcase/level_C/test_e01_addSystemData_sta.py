@@ -10,7 +10,7 @@ from _env import addPaths
 addPaths('.')
 from common.init import execEnv, loginInfo, db_conf
 from model.baseActionAdd import user_login, add_interacts, conf_local_interact, conf_child_interact, \
-    conf_mcu, add_MCUequipments
+    conf_drivers_local, add_MCUequipments
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -95,7 +95,7 @@ class generateSystemData(unittest.TestCase):
         driver = self.driver
         user_login(driver, **loginInfo)
         # add_MCUequipments(driver, **MCUequipment)
-        conf_mcu(driver)
+        conf_drivers_local(driver)
         print 'exec:test_confChildInteract end.'
 
 if __name__ == '__main__':

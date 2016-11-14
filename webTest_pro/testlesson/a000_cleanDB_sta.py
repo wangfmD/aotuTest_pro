@@ -10,9 +10,11 @@ import unittest
 from _env import addPaths
 addPaths('.')
 from common.execsql import execFileSql
+from common.init import sqlFilePath
 
 # init data
-filesql = 'G:\\00project\\sql_lib\\middle_10.sql'
+filesql = sqlFilePath + 'middle_10.sql'
+# filesql = 'G:\\00project\\sql_lib\\middle_10.sql'
 dbinfo = {
     'host': '10.1.0.56',
     'usr': 'root',
@@ -33,3 +35,4 @@ class dbMgr(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    # print filesql

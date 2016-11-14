@@ -93,13 +93,13 @@ def add_tenants(driver, **kwargs):
         # driver.find_element_by_css_selector("#platmarkName > div.col-sm-9 > input.form-control").send_keys(u"河南教育局")
         driver.find_element_by_css_selector(
             "#platmarkName > div.col-sm-9 > input.form-control").send_keys(
-                kwargs["platmarkName"])
+            kwargs["platmarkName"])
         driver.find_element_by_css_selector(
             "#platmarkCode > div.col-sm-9 > input.form-control").clear()
         # driver.find_element_by_css_selector("#platmarkCode > div.col-sm-9 > input.form-control").send_keys("001")
         driver.find_element_by_css_selector(
             "#platmarkCode > div.col-sm-9 > input.form-control").send_keys(
-                kwargs["platmarkCode"])
+            kwargs["platmarkCode"])
 
         sleep(1)
         driver.find_element_by_id("submit").click()
@@ -213,12 +213,12 @@ def add_classrooms(driver, **kwargs):
             "#className > div.col-sm-9 > input.form-control").clear()
         driver.find_element_by_css_selector(
             "#className > div.col-sm-9 > input.form-control").send_keys(kwargs[
-                'className'])
+                                                                            'className'])
         driver.find_element_by_css_selector(
             "#classAccNumber > div.col-sm-9 > input.form-control").clear()
         driver.find_element_by_css_selector(
             "#classAccNumber > div.col-sm-9 > input.form-control").send_keys(
-                kwargs['classAccNumber'])
+            kwargs['classAccNumber'])
         # click 确定
         driver.find_element_by_xpath("(//button[@id='submit'])[3]").click()
         # driver.find_element_by_css_selector(
@@ -616,10 +616,10 @@ def add_roles(driver, **kwargs):
         sleep(0.5)
         driver.find_element_by_xpath(".//*[@id='roleName']").clear()
         driver.find_element_by_xpath(".//*[@id='roleName']").send_keys(kwargs[
-            'roleName'])
+                                                                           'roleName'])
         driver.find_element_by_xpath(".//*[@id='roleCode']").clear()
         driver.find_element_by_xpath(".//*[@id='roleCode']").send_keys(kwargs[
-            'roleCode'])
+                                                                           'roleCode'])
         driver.find_element_by_xpath(".//*[@id='description']").clear()
         driver.find_element_by_xpath(".//*[@id='description']").send_keys(
             kwargs['description'])
@@ -677,7 +677,7 @@ def add_interactgrps(driver, **kwargs):
         Select(
             driver.find_element_by_xpath("//div[@id='schoolTypeId']/div/select"
                                          )).select_by_visible_text(kwargs[
-                                             'schoolgrTypeId'])
+                                                                       'schoolgrTypeId'])
         # //*[@id='schoolTypeId']/div/select
         # click 确定
         driver.find_element_by_xpath("//button[@id='submit']").click()
@@ -979,15 +979,15 @@ def add_MCUequipments(driver, **kwargs):
         sleep(1)
         driver.find_element_by_id("equipmentName").clear()
         driver.find_element_by_id("equipmentName").send_keys(kwargs[
-            'equipmentName'])
+                                                                 'equipmentName'])
         driver.find_element_by_id("equipIpAddr").clear()
         driver.find_element_by_id("equipIpAddr").send_keys(kwargs[
-            'equipIpAddr'])
+                                                               'equipIpAddr'])
         driver.find_element_by_id("mcu_port").clear()
         driver.find_element_by_id("mcu_port").send_keys(kwargs['mcu_port'])
         driver.find_element_by_id("mcuLoginName").clear()
         driver.find_element_by_id("mcuLoginName").send_keys(kwargs[
-            'mcuLoginName'])
+                                                                'mcuLoginName'])
         driver.find_element_by_id("mcuPasswd").clear()
         driver.find_element_by_id("mcuPasswd").send_keys(kwargs['mcuPasswd'])
         # click 确定
@@ -1165,9 +1165,9 @@ def add_interacts(driver, **kwargs):
         print "add {} failed.".format(kwargs['host'])
 
 
-def conf_local_interact(driver, interactaddr):
+def conf_interact_local(driver, interactaddr):
     """
-    Func desc
+    Func desc:local interactmgr platform config
     Args:
     -
     Usage:
@@ -1217,7 +1217,7 @@ def conf_local_interact(driver, interactaddr):
 
 def conf_child_interact(driver, interactaddr, serveraddr):
     """
-    Func desc
+    Func desc:child interactmgr platform config
     Args:
     -
     Usage:
@@ -1519,7 +1519,7 @@ def add_cfg_hdks(driver, **kwargs):
         # operation
         driver.find_element_by_xpath("//input[@id='name']").clear()
         driver.find_element_by_xpath("//input[@id='name']").send_keys(kwargs[
-            'name'])
+                                                                          'name'])
         # click 确定
         driver.find_element_by_xpath(
             "//button[@id='insertinteractteach']").click()
@@ -1570,7 +1570,7 @@ def add_emails(driver, **kwargs):
         # operation
         driver.find_element_by_xpath("//input[@id='smtp']").clear()
         driver.find_element_by_xpath("//input[@id='smtp']").send_keys(kwargs[
-            'smtp'])
+                                                                          'smtp'])
         driver.find_element_by_xpath("//input[@id='fromName']").clear()
         driver.find_element_by_xpath("//input[@id='fromName']").send_keys(
             kwargs['fromName'])
@@ -1721,7 +1721,7 @@ def add_lesson(driver):
     sleep(0.5)
     driver.find_element_by_xpath(
         "//tbody[@id='theclassroom_value']/tr[2]/td/div/div/ul/li[2]/a").click(
-        )
+    )
     sleep(0.5)
     driver.find_element_by_xpath("(//button[@type='button'])[27]").click()
     sleep(0.5)
@@ -1810,6 +1810,6 @@ def add_excellentClass(driver):
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     user_login(driver, **loginInfo)
-    #conf_child_interact(driver, '10.1.0.45', '10.1.0.56')
+    # conf_child_interact(driver, '10.1.0.45', '10.1.0.56')
     # conf_mcu(driver)
     conf_drivers_local(driver)

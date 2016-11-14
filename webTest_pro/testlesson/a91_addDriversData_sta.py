@@ -8,20 +8,18 @@ from selenium import webdriver
 from _env import addPaths
 
 addPaths('.')
+from common.log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, L_INFO
 from common.init import execEnv, loginInfo, db_conf, child_interact_ip
-from model.baseActionAdd import user_login, add_interacts, conf_local_interact, \
-    conf_child_interact, add_MCUequipments, conf_drivers_local
+from common.init import logFile
+from model.baseActionAdd import user_login, add_interacts, conf_interact_local, \
+    add_MCUequipments, conf_drivers_local
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-users = [{
-    'loginName': 'user',
-    'trueName': 'teacher'
-}, {
-    'loginName': 'user1',
-    'trueName': 'teacher1'
-}]
+LOG_INIT(logFile)
+logger = LOG_MODULE_DEFINE('Platform')
+SET_LOG_LEVEL(logger, 'info')
 
 MCUequipments = [{
     'equipmentName': '85mcu',
@@ -60,11 +58,8 @@ MCUequipment = {
     'mcuPasswd': 'POLYCOM'
 }
 
-schools = []
-school = {}
 
-
-class generateSystemData(unittest.TestCase):
+class addDriversData(unittest.TestCase):
     ''''学校教室设备基础数据添加'''
 
     def setUp(self):
@@ -92,30 +87,17 @@ class generateSystemData(unittest.TestCase):
         print "generateSystemData end!"
         print "=" * 60
 
-    def test_add_MCUequipments(self):
-        '''添加MCU'''
-        print "exec：test_add_MCUequipments..."
-
-        driver = self.driver
-        user_login(driver, **loginInfo)
-
-        for MCUequipment in MCUequipments:
-            add_MCUequipments(driver, **MCUequipment)
-            self.assertEqual(u"保存成功！", driver.find_element_by_css_selector /
-                             (".layui-layer-content").text)
-        sleep(0.5)
-        print "exec：test_add_MCUequipments success."
-
     def test_aconfLocalInteract(self):
-        '''配置中心消息中间件'''
+        '''添加配置中心消息中间件'''
         print 'exec:test_confLocalInteract...'
+        L_INFO(logger, "添加消息中间件")
         driver = self.driver
         user_login(driver, **loginInfo)
         add_interacts(driver, **middle_interacts)
-        conf_local_interact(driver, middle_interact_ip)
+        conf_interact_local(driver, middle_interact_ip)
         print 'exec:test_confLocalInteract end.'
 
-    # def test_confChildInteract(self):
+        # def test_confChildInteract(self):
         # '''配置节点中间件'''
         # print 'exec:test_confChildInteract...'
         # driver = self.driver
@@ -124,9 +106,23 @@ class generateSystemData(unittest.TestCase):
         # conf_child_interact(driver, child_interact_ip, middle_interact_ip)
         # print 'exec:test_confChildInteract end.'
 
+    def test_add_MCUequipments(self):
+        '''添加MCU'''
+        print "exec：test_add_MCUequipments..."
+        L_INFO(logger, "添加MCU")
+        driver = self.driver
+        user_login(driver, **loginInfo)
+
+        for MCUequipment in MCUequipments:
+            add_MCUequipments(driver, **MCUequipment)
+        # self.assertEqual(u"保存成功！", driver.find_element_by_css_selector(".layui-layer-content").text)
+        sleep(0.5)
+        print "exec：test_add_MCUequipments success."
+
     def test_confMCU(self):
         '''配置节点中间件'''
         print 'Exec:test_confChildInteract...'
+        L_INFO(logger, "配置消息中间件管理的设备")
         driver = self.driver
         user_login(driver, **loginInfo)
         conf_drivers_local(driver)
@@ -134,16 +130,6 @@ class generateSystemData(unittest.TestCase):
         print 'exec:test_confChildInteract end.'
 
 
-def test_MCUequipments():
-    """TODO: Docstring for test_.
-
-    :arg1: TODO
-    :returns: TODO
-
-    """
-    for MCUequipment in MCUequipments:
-        print MCUequipment
-
 if __name__ == '__main__':
-    # unittest.main()
+    unittest.main()
     # test_MCUequipments()
