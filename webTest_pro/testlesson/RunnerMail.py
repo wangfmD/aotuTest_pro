@@ -48,4 +48,4 @@ if __name__ == '__main__':
     runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
     runner.run(discover)
     fp.close()
-    sendReportWithAtt(filename, receiver)
+    # sendReportWithAtt(filename, receiver)

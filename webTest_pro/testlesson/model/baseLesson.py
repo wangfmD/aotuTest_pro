@@ -20,7 +20,7 @@ from _env import addPaths
 addPaths('.')
 from baseActionAdd import user_login
 from common.Oauth import getAccesssToken, headers
-from log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, T_INFO, L_INFO
+from common.log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, T_INFO, L_INFO
 from common.init import base_url, db_conf, loginInfo
 from common.mysqlKit import sqlOperating
 

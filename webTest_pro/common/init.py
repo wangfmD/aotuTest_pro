@@ -30,6 +30,14 @@ sqlFilePath = home_path + '\webTest_pro\data\sqllib\\'
 # 日志文件存放路径
 logPath = home_path + '\webTest_pro\log'
 logFile = logPath + '\exec.log'
+# 日志路径不存在，则创建该路径
+# 如果log路径不存在，则会导致用例执行失败
+if os.path.exists(logPath) == True:
+    print "The log path exist!"
+else:
+    print "The log path is not exist,create report directory..."
+    os.mkdir(logPath)
+
 
 # 配置文件的学校、教室、设备信息
 classroom_para = []
@@ -96,4 +104,4 @@ for s in classroom_tmp:
 
 if __name__ == '__main__':
     print execEnv
-    print tmpEnvFile
+    print logFile

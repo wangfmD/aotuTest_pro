@@ -5,7 +5,7 @@
      Maintainer: wangfm
      CreateDate: 2016-11-09 16:30:34
 """
-import unittest
+import unittest, sys
 from time import sleep
 from selenium import webdriver
 from model.baseLesson import beginJpk, user_login
@@ -52,3 +52,5 @@ class beginJpkMgr(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    #  for path in sys.path:
+        #  print path
