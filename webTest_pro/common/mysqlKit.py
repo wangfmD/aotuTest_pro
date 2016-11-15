@@ -54,10 +54,10 @@ class sqlOperating:
         try:
             cur.execute(sql)
             self.con.commit()
-            print 'update success.'
+            print 'updated successful.'
         except:
             self.con.rollback()
-            print 'update failed.'
+            print 'updated failed.'
         self.con.close()
         print 'closed connection.'
 if __name__ == '__main__':

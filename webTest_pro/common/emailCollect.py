@@ -1,5 +1,4 @@
 # coding=utf-8
-
 """
      emailCollect.py
      Desc: used to send test report
@@ -13,6 +12,7 @@ from email.header import Header
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 
 def sendReportWithAtt(attachment, *args):
     """
@@ -64,7 +64,8 @@ def sendReportWithAtt(attachment, *args):
     # send mail
     smtp = smtplib.SMTP(smtpserver)
     smtp.login(user, password)
-    smtp.sendmail(msgRoot['From'], msgRoot['To'].split(';'), msgRoot.as_string())
+    smtp.sendmail(msgRoot['From'], msgRoot['To'].split(';'),
+                  msgRoot.as_string())
     smtp.quit()
     print('test report has send out!')
 
@@ -83,7 +84,9 @@ def sendReport(file_new):
     msg = MIMEText(mail_body, 'html', 'utf-8')
     msg['Subject'] = Header('自动化测试报告', 'utf-8')
     msg['From'] = 'devops@3bu.cn'  # 发件地址
-    msg['To'] = 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn'  # 收件人地址，多人以分号分隔
+    msg['To'] = 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;\
+        wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn'
+                                                                                           # 收件人地址，多人以分号分隔
 
     smtp = smtplib.SMTP('smtp.exmail.qq.com')
     smtp.login('devops@3bu.cn', 'Xungejiaoyu@2015')  # 登录邮箱的账户和密码
