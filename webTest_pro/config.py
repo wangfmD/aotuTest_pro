@@ -9,9 +9,9 @@ from common.emailCollect import sendReportWithAtt
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-tmpEnvFile = basedir + '\.tmp'
 home_path = os.environ.get('PY_DEV_HOME')
+basedir = os.path.abspath(os.path.dirname(__file__))
+tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
 
 envpath = {'default': home_path + '\webTest_pro\cfg\init_default.conf',
            'dev': home_path + '\webTest_pro\cfg\init_dev.conf',
@@ -30,27 +30,32 @@ class TestRunner:
     def __init__(self, exectype='default'):
         self.homePath = os.environ.get("PY_DEV_HOME")
         # test_dir = '.'
-
+        self.tmpEnvFile = self.homePath + '\webTest_pro\common\.tmp'
         self.exectype = exectype
         if exectype == 'default':
-            with open(tmpEnvFile, 'w+') as f:
+            with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['default'])
             self.receiver = receiver['default']
             self.test_dir = '.'
         elif exectype == 'dev':
-            with open(tmpEnvFile, 'w+') as f:
+            with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['dev'])
             self.receiver = receiver['dev']
             self.test_dir = '.'
         elif exectype == 'test':
-            with open(tmpEnvFile, 'w+') as f:
+            with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['test'])
             self.receiver = receiver['test']
             self.test_dir = '.'
         elif exectype == 'debug':
-            with open(tmpEnvFile, 'w+') as f:
+            with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['test'])
             self.receiver = receiver['test']
+            self.test_dir = '.'
+        else:
+            with open(self.tmpEnvFile, 'w+') as f:
+                f.write(envpath['default'])
+            self.receiver = receiver['default']
             self.test_dir = '.'
         #
         self.discover = unittest.defaultTestLoader.discover(self.test_dir, pattern='*_sta.py')
@@ -72,6 +77,7 @@ class TestRunner:
         fp = open(self.filename, 'wb')
         runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
         runner.run(self.discover)
+        sendReportWithAtt(self.filename, self.receiver)
         fp.close()
 
 if __name__ == '__main__':

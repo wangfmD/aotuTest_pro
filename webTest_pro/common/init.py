@@ -18,7 +18,7 @@ import os
 # 从环境变量中读取项目路径，获取配置文件路径
 home_path = os.environ.get('PY_DEV_HOME')
 basedir = os.path.abspath(os.path.dirname(__file__))
-tmpEnvFile = basedir + '\.tmp'
+tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
 with open(tmpEnvFile, 'r+') as f:
     pathTmp = f.readlines()
 # cfg_path = home_path + '/webTest_pro/cfg/init_v1.conf'
@@ -28,7 +28,7 @@ cfg_path = pathTmp[0]
 sqlFilePath = home_path + '\webTest_pro\data\sqllib\\'
 
 # 日志文件存放路径
-logPath = home_path + '\log'
+logPath = home_path + '\webTest_pro\log'
 logFile = logPath + '\exec.log'
 
 # 配置文件的学校、教室、设备信息
@@ -95,4 +95,5 @@ for s in classroom_tmp:
     classroom_para.append(arr)
 
 if __name__ == '__main__':
-    print base_url
+    print execEnv
+    print tmpEnvFile

@@ -1165,9 +1165,9 @@ def add_interacts(driver, **kwargs):
         print "add {} failed.".format(kwargs['host'])
 
 
-def conf_local_interact(driver, interactaddr):
+def conf_interact_local(driver, interactaddr):
     """
-    Func desc
+    Func desc:local interactmgr platform config
     Args:
     -
     Usage:
@@ -1217,7 +1217,7 @@ def conf_local_interact(driver, interactaddr):
 
 def conf_child_interact(driver, interactaddr, serveraddr):
     """
-    Func desc
+    Func desc:child interactmgr platform config
     Args:
     -
     Usage:
