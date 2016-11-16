@@ -572,6 +572,19 @@ def del_excellentClass(driver):
     except Exception as e:
         print "删除精品课失败！"
 
+def del_hdk(driver):
+    '''删除互动课'''
+    driver.refresh()
+    driver.find_element_by_link_text(u"课堂管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"互动教学").click()
+    sleep(0.5)
+    driver.find_element_by_xpath("//button[@id='delete_intr_button']").click()
+    sleep(1)
+    driver.find_element_by_link_text(u"确定").click()
+    sleep(2)
+
+
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     user_login(driver, **loginInfo)

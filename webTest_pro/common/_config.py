@@ -21,7 +21,8 @@ envpath = {'default': home_path + '\webTest_pro\cfg\init_default.conf',
 receiver = {'default': 'wangfm@3bu.cn',
             'dev': 'wangfm@3bu.cn',
             'test': 'wangfm@3bu.cn',
-            'debug': 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn;'}
+            'debug': 'liman@3bu.cn;wujp@3bu.cn;fuyj@3bu.cn;lubb@3bu.cn;lukai@3bu.cn;\
+                wangfm@3bu.cn;tengfei@3bu.cn;daiyd@3bu.cn;daicj@3bu.cn;wuf@3bu.cn>;xiahao@3bu.cn;'}
 
 
 class TestRunner:

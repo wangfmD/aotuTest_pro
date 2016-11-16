@@ -7,10 +7,11 @@ from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException, NoSuchElementException
 
 from _env import addPaths
+from model.baseActionDel import del_hdk
 
 addPaths('.')
 from common.init import execEnv, loginInfo
-from model.baseActionAdd import user_login, add_lesson
+from model.baseActionAdd import user_login, add_hdk
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -49,39 +50,25 @@ class interActiveTeachingMgr(unittest.TestCase):
 
         driver = self.driver
         user_login(driver, **loginInfo)
-        add_lesson(driver)
-        sleep(4)
+        add_hdk(driver)
+        sleep(2)
+        # self.assertEqual(u"保存成功", driver.find_element_by_xpath("//*[@id='layui-layer10']/div").text)
+
+
+        sleep(0.5)
 
         print "exec：test_add_hdk success."
 
 
-    def is_element_present(self, how, what):
-        try:
-            self.driver.find_element(by=how, value=what)
-        except NoSuchElementException as e:
-            return False
-        return True
-
-    def is_alert_present(self):
-        try:
-            self.driver.switch_to_alert()
-        except NoAlertPresentException as e:
-            return False
-        return True
-
-    def close_alert_and_get_its_text(self):
-        try:
-            alert = self.driver.switch_to_alert()
-            alert_text = alert.text
-            if self.accept_next_alert:
-                alert.accept()
-            else:
-                alert.dismiss()
-            return alert_text
-        finally:
-            self.accept_next_alert = True
+    def test_del_hdk(self):
+        '''删除互动课'''
+        print "exec：test_del_hdk..."
+        driver = self.driver
+        user_login(driver, **loginInfo)
+        del_hdk(driver)
+        sleep(2)
+        print "exec：test_del_hdk successed."
 
 
 if __name__ == '__main__':
-    # main = unittest.main()
-    print loginInfo
+    main = unittest.main()

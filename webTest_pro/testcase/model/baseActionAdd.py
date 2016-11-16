@@ -1626,6 +1626,105 @@ def add_tmp(driver, **kwargs):
         print "add {} failed.".format(kwargs[''])
 
 
+def add_hdk(driver):
+    '''添加互动课'''
+    driver.refresh()
+    driver.find_element_by_link_text(u"课堂管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"互动教学").click()
+    sleep(0.5)
+    driver.find_element_by_id("addclassroom").click()
+    sleep(1)
+    # 第二个选项
+    driver.find_element_by_xpath("(//button[@type='button'])[13]").click()
+    driver.find_element_by_xpath("//div[@id='main-container']/div/div[2]/div/div[2]/div/div/div/div/div/ul/li[3]/a/span").click()
+    # 第一个选项
+    # driver.find_element_by_xpath("(//button[@type='button'])[13]").click()
+    # driver.find_element_by_xpath("//div[@id='main-container']/div/div[2]/div/div[2]/div/div/div/div/div/ul/li[2]/a/span").click()
+    # 选择主讲教室
+    driver.find_element_by_xpath("(//button[@type='button'])[14]").click()
+    driver.find_element_by_xpath("//div[@id='main-container']/div/div[2]/div/div[2]/div/div[2]/div/div/ul/li[2]/a/span").click()
+    # add lesson name
+    driver.find_element_by_id("teachLesson_input_text").clear()
+    driver.find_element_by_id("teachLesson_input_text").send_keys("hdk_long")
+    # 选择年级
+    driver.find_element_by_xpath("(//button[@type='button'])[15]").click()
+    driver.find_element_by_link_text(u"一年级").click()
+    # 选择科目
+    driver.find_element_by_xpath("(//button[@type='button'])[16]").click()
+    driver.find_element_by_link_text(u"语文").click()
+    # 选择老师
+    driver.find_element_by_xpath("(//button[@type='button'])[17]").click()
+    driver.find_element_by_xpath("//div[@id='main-container']/div/div[2]/div/div[2]/div/div[4]/div[3]/div/ul/li[2]/a/span").click()
+    # 打开平台直播开关
+    driver.find_element_by_xpath("//input[@id='ptlive_true']").click()
+    # 添加起止时间
+    driver.find_element_by_xpath("(//button[@type='button'])[22]").click()
+    driver.find_element_by_link_text(u"周日").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[23]").click()
+    driver.find_element_by_link_text(u"第七节").click()
+    # 添加接收教室
+    driver.find_element_by_xpath("//div[@id='class_table_seedClassroom']/button").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[24]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr/td/div/div/ul/li[2]/a").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[25]").click()
+    # 选择第一个学校
+    # driver.find_element_by_link_text(u"132教室").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr/td[2]/div/div/ul/li[2]/a").click()
+    # 选择第二个学校
+    # driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[2]/td[2]/div/div/ul/li[3]/a").click()
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[26]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[2]/td/div/div/ul/li[2]/a/span").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[27]").click()
+    # 选择第二个学校
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[2]/td[2]/div/div/ul/li[3]/a").click()
+    # 添加教室
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[28]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[3]/td/div/div/ul/li[2]/a/span").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[29]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[3]/td[2]/div/div/ul/li[4]/a/span").click()
+    # 添加教室
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[30]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[4]/td/div/div/ul/li[2]/a").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[31]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[4]/td[2]/div/div/ul/li[5]/a").click()
+    # 添加教室
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[32]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[5]/td/div/div/ul/li[2]/a/span").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[33]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[5]/td[2]/div/div/ul/li[6]/a/span").click()
+    # 添加教室
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[34]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[6]/td/div/div/ul/li[2]/a/span").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[35]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[6]/td[2]/div/div/ul/li[7]/a/span").click()
+    # 添加教室
+    driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[36]").click()
+    # 选择学校下拉框第一个
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[7]/td/div/div/ul/li[2]/a").click()
+    driver.find_element_by_xpath("(//button[@type='button'])[37]").click()
+    driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[7]/td[2]/div/div/ul/li[8]/a/span").click()
+
+    # 添加教室
+    # driver.find_element_by_xpath("//button[@onclick='addClassroomByCheck(null,$(this));']").click()
+    # driver.find_element_by_xpath("(//button[@type='button'])[38]").click()
+    # 选择学校下拉框第二个
+    # driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[8]/td/div/div/ul/li[3]/a").click()
+    # driver.find_element_by_xpath("(//button[@type='button'])[39]").click()
+    # driver.find_element_by_xpath("//tbody[@id='theclassroom_value']/tr[8]/td[2]/div/div/ul/li[3]/a").click()
+
+    # click ok btn
+    sleep(0.5)
+    driver.find_element_by_css_selector("div.middle_content.finalast > button.btn.btn-success").click()
+    sleep(2)
+
+
 def add_lesson(driver):
     """
     Func desc
