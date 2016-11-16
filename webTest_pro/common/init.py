@@ -103,5 +103,5 @@ for s in classroom_tmp:
     classroom_para.append(arr)
 
 if __name__ == '__main__':
-    print execEnv
+    print tmpEnvFile
     print logFile
