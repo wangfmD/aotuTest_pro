@@ -18,6 +18,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
 
 envpath = {
+    'dev_wf_56': home_path + '\webTest_pro\cfg\init_dev_56.conf',
+    'dev_wf_57': home_path + '\webTest_pro\cfg\init_dev_57.conf',
+    'dev_56': home_path + '\webTest_pro\cfg\init_dev_56.conf',
+    'dev_57': home_path + '\webTest_pro\cfg\init_dev_57.conf',
     'default': home_path + '\webTest_pro\cfg\init_default.conf',
     'dev': home_path + '\webTest_pro\cfg\init_dev.conf',
     'test': home_path + '\webTest_pro\cfg\init_test.conf',
@@ -25,6 +29,10 @@ envpath = {
 }
 
 receiver = {
+    'dev_wf_57': 'wuf@3bu.cn',
+    'dev_wf_56': 'wuf@3bu.cn',
+    'dev_56': 'wangfm@3bu.cn',
+    'dev_57': 'wangfm@3bu.cn',
     'default': 'wangfm@3bu.cn',
     'dev': 'wangfm@3bu.cn',
     'test': 'wangfm@3bu.cn',
@@ -62,6 +70,26 @@ class TestRunner:
             with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['test'])
             self.receiver = receiver['test']
+            self.test_dir = '.'
+        elif exectype == 'dev_wf_56':
+            with open(self.tmpEnvFile, 'w+') as f:
+                f.write(envpath['dev_wf_56'])
+            self.receiver = receiver['dev_wf_56']
+            self.test_dir = '.'
+        elif exectype == 'dev_wf_57':
+            with open(self.tmpEnvFile, 'w+') as f:
+                f.write(envpath['dev_wf_57'])
+            self.receiver = receiver['dev_wf_57']
+            self.test_dir = '.'
+        elif exectype == 'dev_57':
+            with open(self.tmpEnvFile, 'w+') as f:
+                f.write(envpath['dev_57'])
+            self.receiver = receiver['dev_57']
+            self.test_dir = '.'
+        elif exectype == 'dev_56':
+            with open(self.tmpEnvFile, 'w+') as f:
+                f.write(envpath['dev_56'])
+            self.receiver = receiver['dev_56']
             self.test_dir = '.'
         else:
             with open(self.tmpEnvFile, 'w+') as f:

@@ -4,3 +4,4 @@ workspace.xml
 *.html
 *.log
 *.bat
+.settings

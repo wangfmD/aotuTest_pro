@@ -1,4 +1,3 @@
-# _*_ coding: utf-8 _*_
 """
 __title__ = ""
 __auther__ = "acer"

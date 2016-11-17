@@ -1,8 +1,0 @@
-eclipse.preferences.version=1
-encoding//webTest_pro/common/generateHtml/file_os.py=utf-8
-encoding//webTest_pro/common/generateHtml/html_template.py=utf-8
-encoding//webTest_pro/config.py=utf-8
-encoding//webTest_pro/testcase/level_A/test_a0_cleanDB_sta.py=utf-8
-encoding//webTest_pro/testcase/level_D/test_a1_cleanDB_sta.py=utf-8
-encoding//webTest_pro/testcase/model/baseActionModify.py=utf-8
-encoding//webTest_pro/testcase/model/baseUploadFile.py=utf-8
