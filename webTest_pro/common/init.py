@@ -1,32 +1,14 @@
 # coding=utf-8
 import ConfigParser
 import sys
-
+from log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, T_INFO, L_INFO
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 import os
 
 # 从环境变量中读取项目路径，获取配置文件路径
-
-# home_path = os.environ.get('PY_DEV_HOME')
-# with open(tmpEnvFile, 'r+') as f:
-#     pathTmp = f.readlines()
-# # cfg_path = home_path + '/webTest_pro/cfg/init_v1.conf'
-# cfg_path = pathTmp[0]
-
-# 从环境变量中读取项目路径，获取配置文件路径
 home_path = os.environ.get('PY_DEV_HOME')
-basedir = os.path.abspath(os.path.dirname(__file__))
-tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
-with open(tmpEnvFile, 'r+') as f:
-    pathTmp = f.readlines()
-# cfg_path = home_path + '/webTest_pro/cfg/init_v1.conf'
-cfg_path = pathTmp[0]
-
-# sql文件存放路径
-sqlFilePath = home_path + '\webTest_pro\data\sqllib\\'
-
 # 日志文件存放路径
 logPath = home_path + '\webTest_pro\log'
 logFile = logPath + '\exec.log'
@@ -37,6 +19,26 @@ if os.path.exists(logPath) == True:
 else:
     print "The log path is not exist,create report directory..."
     os.mkdir(logPath)
+
+# 初始化日志模块
+LOG_INIT(logFile)
+logger = LOG_MODULE_DEFINE('Platform')
+SET_LOG_LEVEL(logger, 'info')
+
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+# 从生成的文件中读取配置文件路径
+tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
+with open(tmpEnvFile, 'r+') as f:
+    pathTmp = f.readlines()
+cfg_path = pathTmp[0]
+L_INFO(logger, 'The config path >> %s', cfg_path)
+
+# sql文件存放路径
+sqlFilePath = home_path + '\webTest_pro\data\sqllib\\'
+
+
 
 
 # 配置文件的学校、教室、设备信息

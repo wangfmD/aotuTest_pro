@@ -5,17 +5,17 @@
      Maintainer: wangfm
      CreateDate: 2016-11-09 16:30:34
 """
-import unittest, sys
+import unittest
 from time import sleep
 from selenium import webdriver
-from model.baseLesson import beginJpk, user_login
 
 from _env import addPaths
 
 addPaths('.')
+from model.baseLesson import beginJpk, user_login
+from model.baseActionAdd import add_excellentClass
 from common.mysqlKit import sqlOperating, sqlpara
 from common.init import db_conf, loginInfo, execEnv
-
 
 class beginJpkMgr(unittest.TestCase):
     """精品课测试"""
@@ -42,6 +42,14 @@ class beginJpkMgr(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
         print "generateSystemData end!"
         print "=" * 60
+
+    def test_addjpk(self):
+        """添加精品课"""
+        driver = self.driver
+        user_login(driver, **loginInfo)
+        add_excellentClass(driver)
+
+
 
     def test_beginJpk(self):
         """精品课检验"""

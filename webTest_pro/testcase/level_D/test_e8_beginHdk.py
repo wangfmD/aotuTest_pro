@@ -1,30 +1,24 @@
-# coding: utf-8
-import sys
+# coding=utf-8
+"""
+     beginJpk.py
+     Desc: checkout JPK info
+     Maintainer: wangfm
+     CreateDate: 2016-11-09 16:30:34
+"""
 import unittest
 from time import sleep
-
 from selenium import webdriver
 
 from _env import addPaths
 
 addPaths('.')
-from model.baseActionAdd import admin_login, add_tenants
-from common.init import execEnv
+from model.baseLesson import beginJpk, user_login
+from model.baseActionAdd import add_excellentClass
+from common.mysqlKit import sqlOperating, sqlpara
+from common.init import db_conf, loginInfo, execEnv
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-tenantAdd = [{'areaid': "//div[@id='treeview']/ul/li[17]",'platmarkName':u'河南教育局','platmarkCode':'001'},
-             {'areaid': "//div[@id='treeview']/ul/li[18]",'platmarkName':u'张三教育局','platmarkCode':'002'},
-             {'areaid': "//div[@id='treeview']/ul/li[19]",'platmarkName':u'李四教育局','platmarkCode':'003'} ]
-
-tenantData = [{'platmarkName': u'张三教育局11','platmarkCode':'002','searchName':u'张三教育局'}]
-
-tenantDel = [{'searchName':u'张三教育局11'},{'searchName':u'李四教育局'}]
-
-
-class tenantmanger(unittest.TestCase):
-    '''租户管理场景'''
+class beginJpkMgr(unittest.TestCase):
+    """精品课测试"""
 
     def setUp(self):
         if execEnv['execType'] == 'local':
@@ -46,17 +40,25 @@ class tenantmanger(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
-        print "tenantmanger end!"
+        print "generateSystemData end!"
         print "=" * 60
 
-    def test_add_tenant(self):
-        '''添加租户'''
-        print "exec: test_add_tenant..."
+    def test_addjpk(self):
+        """添加精品课"""
         driver = self.driver
-        admin_login(driver)
-        for itme in tenantAdd:
-            add_tenants(driver,**itme)
-        print "exec: test_add_tenant OK"
+        user_login(driver, **loginInfo)
+        add_excellentClass(driver)
+
+
+
+    def test_beginJpk(self):
+        """精品课检验"""
+        driver = webdriver.Chrome()
+        user_login(driver, **loginInfo)
+        beginJpk(driver, 'jpk')
+        sleep(20)
 
 if __name__ == '__main__':
     unittest.main()
+    #  for path in sys.path:
+        #  print path

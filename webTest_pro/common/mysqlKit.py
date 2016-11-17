@@ -38,6 +38,9 @@ class sqlOperating:
                                        db=db,
                                        port=port,
                                        cursorclass=MySQLdb.cursors.DictCursor)
+            print "DB connection info:"
+            print "  >>host: {0}\n  >>user: {1}\n  >>password: {2}\n  >>database: " \
+                  "{3}\n  >>port:{4}".format(host,user,passwd,db,port)
         except MySQLdb.Error, e:
             print "Mysql Err %d:%s" % (e.args[0], e.args[1])
 

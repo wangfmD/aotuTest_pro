@@ -43,5 +43,5 @@ class dbMgr(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
-    # print filesql
+    # unittest.main()
+    print dbinfo

@@ -6,7 +6,6 @@
      CreateDate: 2016-11-06 14:23:58
 """
 
-
 import sys
 from time import sleep
 import requests
@@ -17,10 +16,11 @@ from selenium.common.exceptions import StaleElementReferenceException
 
 # need to import log module, add env path
 from _env import addPaths
+
 addPaths('.')
 from baseActionAdd import user_login
 from common.Oauth import getAccesssToken, headers
-from log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, T_INFO, L_INFO
+from common.log.t_log import LOG_INIT, LOG_MODULE_DEFINE, SET_LOG_LEVEL, T_INFO, L_INFO
 from common.init import base_url, db_conf, loginInfo
 from common.mysqlKit import sqlOperating
 
@@ -31,6 +31,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 host = '10.1.0.46'
+
+
 # 设置日志信息
 #  LOG_INIT('log.log')
 #  logger = LOG_MODULE_DEFINE('Platform')
@@ -49,7 +51,11 @@ def queryLessonInfo(lessonName):
     # 拼装查询SQL语句, lessonName为参数传入
     querySql = "select ID,CLASSROOM_ID,CONFERENCE_ID from interact_teach_lesson where LESSON_NAME='%s'" % lessonName
     # new 查询连接
-    c_query = sqlOperating()
+    # c_query = sqlOperating()
+    c_query = sqlOperating(db_conf['host'],
+                           db_conf['user'],
+                           db_conf['passwd'],
+                           db_conf['db'])
     # 查询
     result = c_query.execQury(querySql)
     lessonInfo = {}
@@ -74,8 +80,9 @@ def beginJpk(driver, *args):
 
     # user_login(driver, **loginInfo)
     lessonInfo = queryLessonInfo(args[0])
-    lessonUrl = '/middleclient/pcManager/LessonPage.do?typeCode=1402&lessonId=' + lessonInfo['lessonId'] + '&isZhu=1&classroomId=' + \
-        lessonInfo['classroomId'] + '&interactType=false&created=0'
+    lessonUrl = '/middleclient/pcManager/LessonPage.do?typeCode=1402&lessonId=' \
+                + lessonInfo['lessonId'] + '&isZhu=1&classroomId=' + lessonInfo['classroomId'] \
+                + '&interactType=false&created=0'
     print lessonUrl
     # get ip address from login URL
     ipAddress = urlparse.urlparse(driver.current_url).netloc
@@ -241,7 +248,7 @@ def beginHdk():
         print "上课信息为空！"
 
 
-#  if __name__ == '__main__':
+    #  if __name__ == '__main__':
     #  aad_lesson()
     #  login()
     #  print base_url
@@ -249,21 +256,10 @@ def beginHdk():
     #  driver = webdriver.Chrome()
 
     #  beginJpk(driver)
+
+
 if __name__ == '__main__':
-    #  for path in sys.path:
-        #  print path
-    #  print "exec: logMgr start..."
-    #  T_INFO("start exec")
-    #  L_INFO(logger, "L_info start out")
-    #  print "exec: logMgr end."
-    # print queryLessonInfo('jpk')
-
     # driver = webdriver.Chrome()
-    # user_login(driver, **loginInfo)
     # beginJpk(driver, 'jpk')
-
-    # print(queryLessonInfo('jpk'))
-
-    # for path in sys.path:
-    #     print path
-    beginHdk()
+    lessonInfo = queryLessonInfo('jpk')
+    print lessonInfo

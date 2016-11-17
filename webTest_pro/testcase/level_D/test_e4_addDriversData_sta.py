@@ -94,6 +94,7 @@ class addDriversData(unittest.TestCase):
         driver = self.driver
         user_login(driver, **loginInfo)
         add_interacts(driver, **middle_interacts)
+        sleep(3)
         conf_interact_local(driver, middle_interact_ip)
         print 'exec:test_confLocalInteract end.'
 
