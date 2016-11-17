@@ -10,7 +10,7 @@ from _env import addPaths
 addPaths('.')
 from model.baseActionDel import del_hdk
 from common.init import execEnv, loginInfo
-from model.baseActionAdd import user_login, add_hdk
+from model.baseActionAdd import user_login, add_hdk_18
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -50,7 +50,7 @@ class interActiveTeachingMgr(unittest.TestCase):
 
         driver = self.driver
         user_login(driver, **loginInfo)
-        add_hdk(driver)
+        add_hdk_18(driver)
         sleep(2)
         # self.assertEqual(u"保存成功", driver.find_element_by_xpath("//*[@id='layui-layer10']/div").text)
 

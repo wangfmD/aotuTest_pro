@@ -7,7 +7,7 @@ from _env import addPaths
 
 addPaths('.')
 from common.init import loginInfo
-from model.baseActionAdd import user_login, add_excellentClass
+from model.baseActionAdd import user_login,add_jpk_18
 from model.baseActionDel import del_excellentClass
 
 
@@ -44,7 +44,7 @@ class excellentClass(unittest.TestCase):
         driver = self.driver
         user_login(driver, **loginInfo)
 
-        add_excellentClass(driver)
+        add_jpk_18(driver)
         print "exec: generate jpk end."
 
 if __name__ == '__main__':
