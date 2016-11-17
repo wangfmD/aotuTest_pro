@@ -1,11 +1,15 @@
 # coding=utf-8
 
 import os
+import shutil
 import sys
 import time
+import socket
 import unittest
 from HTMLTestRunner import HTMLTestRunner
 from common.emailCollect import sendReportWithAtt
+from common.generateHtml.file_os import HTMLFileRunner
+# from common.generateHtml.file_os import ss
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -33,11 +37,12 @@ receiver = {
 class TestRunner:
     """doc"""
 
-    def __init__(self, exectype='default'):
+    def __init__(self, exectype='default', generateHtmlType="no"):
         self.homePath = os.environ.get("PY_DEV_HOME")
         # test_dir = '.'
         self.tmpEnvFile = self.homePath + '\webTest_pro\common\.tmp'
         self.exectype = exectype
+        self.generateHtmlType = generateHtmlType
         if exectype == 'default':
             with open(self.tmpEnvFile, 'w+') as f:
                 f.write(envpath['default'])
@@ -77,16 +82,21 @@ class TestRunner:
         else:
             print "The report path is not exist,create report directory..."
             os.mkdir(self.reportPath)
-
+            
     def run(self):
         self.now = time.strftime("%Y-%m-%d%H%H%S")
-        self.filename = self.reportPath + self.now + '_restult.html'
+        restult=self.now + '_restult.html'
+        self.filename = self.reportPath + restult
         fp = open(self.filename, 'wb')
         runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
         runner.run(self.discover)
         sendReportWithAtt(self.filename, self.receiver)
         fp.close()
-
+        if self.generateHtmlType=='is':
+            folderPath = "Z:\\reports\\"
+            hostname = socket.gethostname()
+            shutil.copy(self.filename, folderPath+socket.gethostbyname(hostname) + "report\\"+restult)
+            HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
 
 if __name__ == '__main__':
     runner = TestRunner('dev')
