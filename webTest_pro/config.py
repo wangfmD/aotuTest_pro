@@ -6,7 +6,10 @@ import sys
 import time
 import socket
 import unittest
-from HTMLTestRunner import HTMLTestRunner
+import requests
+import json
+import common.init as init
+from common.generateHtml.HTMLTestRunner import HTMLTestRunner
 from common.emailCollect import sendReportWithAtt
 from common.generateHtml.file_os import HTMLFileRunner
 # from common.generateHtml.file_os import ss
@@ -116,7 +119,7 @@ class TestRunner:
         restult=self.now + '_restult.html'
         self.filename = self.reportPath + restult
         fp = open(self.filename, 'wb')
-        runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
+        runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：', sqlAdd=init.db_conf)
         runner.run(self.discover)
         sendReportWithAtt(self.filename, self.receiver)
         fp.close()
@@ -127,5 +130,6 @@ class TestRunner:
             HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
 
 if __name__ == '__main__':
-    runner = TestRunner('dev')
+    runner = TestRunner('dev','is')
     runner.run()
+#     print init.db_conf["hostadd"]
