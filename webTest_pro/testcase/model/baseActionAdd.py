@@ -248,7 +248,7 @@ integrateds = [{
 
 terminals = [{
     'equipmentModel': u'Group系列',
-    'className': '32className',
+    'className': u'81教室',
     'equipment_name': '81lb',
     'ipAddr': '10.1.0.81',
     'locAddr': '10.1.0.81',
@@ -256,7 +256,7 @@ terminals = [{
     'equipmentLogPwd': 'admin'
 }, {
     'equipmentModel': u'Group系列',
-    'className': '31className',
+    'className': u'82教室',
     'equipment_name': '82lb',
     'ipAddr': '10.1.0.82',
     'locAddr': '10.1.0.81',
@@ -282,67 +282,70 @@ def add_terminals(driver, **kwargs):
     #       'equipmentLogPwd': 'admin'},
     '''添加一个终端'''
     print "add info:{0},{1}".format(kwargs['equipment_name'],
-                                    kwargs['className'])
+                            kwargs['className'])
     # refresh main page
-    try:
-        driver.refresh()
 
-        # goto test page
-        driver.find_element_by_link_text(u"系统管理").click()
-        driver.find_element_by_link_text(u"学校管理").click()
-        driver.find_element_by_link_text(u"教室列表").click()
-        sleep(1)
-        driver.find_element_by_link_text(kwargs['className']).click()
-        sleep(1)
-        driver.find_element_by_xpath(u"//a[contains(text(),'设备管理')]").click()
-        sleep(1)
-        # click add btn
-        driver.find_element_by_id("addterminal").click()
-        sleep(1)
-        # operation
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #name > div.col-sm-9 > input.form-control"
-        ).clear()
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #name > div.col-sm-9 > input.form-control"
-        ).send_keys(kwargs['equipment_name'])
-        Select(
-            driver.find_element_by_css_selector(
-                "div.modal-body > div > #equipmentModel > div.col-sm-9 > select"
-            )).select_by_visible_text(kwargs['equipmentModel'])
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #ipAddr > div.col-sm-9 > input.form-control"
-        ).clear()
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #ipAddr > div.col-sm-9 > input.form-control"
-        ).send_keys(kwargs['ipAddr'])
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #locAddr > div.col-sm-9 > input.form-control"
-        ).clear()
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #locAddr > div.col-sm-9 > input.form-control"
-        ).send_keys(kwargs['locAddr'])
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #equipmentLogName > div.col-sm-9 > input.form-control"
-        ).clear()
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #equipmentLogName > div.col-sm-9 > input.form-control"
-        ).send_keys(kwargs['equipmentLogName'])
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #equipmentLogPwd > div.col-sm-9 > input.form-control"
-        ).clear()
-        driver.find_element_by_css_selector(
-            "div.modal-body > div > #equipmentLogPwd > div.col-sm-9 > input.form-control"
-        ).send_keys(kwargs['equipmentLogPwd'])
-        # click OK
-        driver.find_element_by_css_selector(
-            "#terminal > div.modal-dialog > div.modal-content > #formrole > div.modal-body > div.text-center > #submit"
-        ).click()
-        sleep(1)
-        print "add {} end.".format(kwargs['equipment_name'])
-    except Exception as e:
-        print e
-        print "add {} failed.".format(kwargs['equipment_name'])
+    driver.refresh()
+
+    # goto test page
+    driver.find_element_by_link_text(u"系统管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"学校管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"教室列表").click()
+    sleep(1)
+    driver.find_element_by_link_text(kwargs['className']).click()
+    sleep(1)
+    # driver.find_element_by_xpath(u"//a[contains(text(),'设备管理')]").click()
+    driver.find_element_by_xpath(u"(//a[contains(text(),'设备管理')])[2]").click()
+    sleep(1)
+    # click add btn
+    driver.find_element_by_id("addterminal").click()
+    sleep(1)
+    # operation
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #name > div.col-sm-9 > input.form-control"
+    ).clear()
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #name > div.col-sm-9 > input.form-control"
+    ).send_keys(kwargs['equipment_name'])
+    Select(
+    driver.find_element_by_css_selector(
+        "div.modal-body > div > #equipmentModel > div.col-sm-9 > select"
+    )).select_by_visible_text(kwargs['equipmentModel'])
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #ipAddr > div.col-sm-9 > input.form-control"
+    ).clear()
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #ipAddr > div.col-sm-9 > input.form-control"
+    ).send_keys(kwargs['ipAddr'])
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #locAddr > div.col-sm-9 > input.form-control"
+    ).clear()
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #locAddr > div.col-sm-9 > input.form-control"
+    ).send_keys(kwargs['locAddr'])
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #equipmentLogName > div.col-sm-9 > input.form-control"
+    ).clear()
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #equipmentLogName > div.col-sm-9 > input.form-control"
+    ).send_keys(kwargs['equipmentLogName'])
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #equipmentLogPwd > div.col-sm-9 > input.form-control"
+    ).clear()
+    driver.find_element_by_css_selector(
+    "div.modal-body > div > #equipmentLogPwd > div.col-sm-9 > input.form-control"
+    ).send_keys(kwargs['equipmentLogPwd'])
+    # click OK
+    driver.find_element_by_css_selector(
+    "#terminal > div.modal-dialog > div.modal-content > #formrole > div.modal-body > div.text-center > #submit"
+    ).click()
+    sleep(1)
+    print "add {} end.".format(kwargs['equipment_name'])
+    # except Exception as e:
+    #     print e
+    #     print "add {} failed.".format(kwargs['equipment_name'])
 
 
 def add_integrateds(driver, **kwargs):
@@ -367,7 +370,9 @@ def add_integrateds(driver, **kwargs):
         sleep(1)
         driver.find_element_by_link_text(kwargs['className']).click()
         sleep(1)
-        driver.find_element_by_xpath(u"//a[contains(text(),'设备管理')]").click()
+        # 2060bug页面修改
+        # driver.find_element_by_xpath(u"//a[contains(text(),'设备管理')]").click()
+        driver.find_element_by_xpath(u"(//a[contains(text(),'设备管理')])[2]").click()
         sleep(1)
         # click add btn
         driver.find_element_by_id("addIntegrated").click()
@@ -1089,23 +1094,45 @@ def conf_drivers_local(driver):
     driver.find_element_by_xpath(
         "//table[@id='middlewaretable']/tbody/tr/td[2]").click()
     sleep(1)
+    # 关联MCU
     driver.find_element_by_css_selector("i.fa.fa-server").click()
     sleep(1)
-    driver.find_element_by_name("ckrelevmcuid").click()
+    driver.find_element_by_xpath("//input[@name='ckrelevmcuid']").click()
     sleep(1)
-    # save
+    driver.find_element_by_xpath("(//input[@name='ckrelevmcuid'])[2]").click()
+    sleep(1)
+    # 点击确定
     driver.find_element_by_id("saverelevmcumiddleware").click()
-    # driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr[2]/td[2]").click()  # 选择interact
-    # 选择消息中间件管理mcu的时间较长
-    sleep(2)
-    # driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr[2]/td[2]").click()
+    sleep(1)
+    # 关联school
     driver.find_element_by_css_selector("i.fa.fa-bars").click()
     sleep(1)
-    driver.find_element_by_css_selector(
-        "#listofschooltable > tr > td > input[type=\"checkbox\"]").click()
+    driver.find_element_by_xpath("//tbody[@id='listofschooltable']/tr/td/input").click()
     sleep(1)
+    driver.find_element_by_xpath("//tbody[@id='listofschooltable']/tr[2]/td/input").click()
+    sleep(1)
+    # 点击确定
     driver.find_element_by_id("insertmiddlewareschool").click()
-    sleep(1)
+    sleep(2)
+    ###############
+    # driver.find_element_by_css_selector("i.fa.fa-server").click()
+    # sleep(1)
+    # driver.find_element_by_name("ckrelevmcuid").click()
+    # sleep(1)
+    # # save
+    # driver.find_element_by_id("saverelevmcumiddleware").click()
+    # # driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr[2]/td[2]").click()  # 选择interact
+    # # 选择消息中间件管理mcu的时间较长
+    # sleep(2)
+    # # driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr[2]/td[2]").click()
+    # driver.find_element_by_css_selector("i.fa.fa-bars").click()
+    # sleep(1)
+    # driver.find_element_by_css_selector(
+    #     "#listofschooltable > tr > td > input[type=\"checkbox\"]").click()
+    # sleep(1)
+    # driver.find_element_by_id("insertmiddlewareschool").click()
+    ###################
+
     # driver.find_element_by_xpath("//table[@id='middlewaretable']/tbody/tr[2]/td[2]").click()
     # sleep(1)
     # driver.find_element_by_id("theschoollist").click()
@@ -1975,4 +2002,6 @@ if __name__ == '__main__':
     user_login(driver, **loginInfo)
     # conf_child_interact(driver, '10.1.0.45', '10.1.0.56')
     # conf_mcu(driver)
-    conf_drivers_local(driver)
+    # conf_drivers_local(driver)
+    for terminal in terminals:
+        add_terminals(driver, ** terminal)
