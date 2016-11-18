@@ -9,7 +9,7 @@ import os
 import sys
 import time
 import unittest
-from HTMLTestRunner import HTMLTestRunner
+from common.generateHtml.HTMLTestRunner import HTMLTestRunner
 from _env import addPaths
 addPaths('.')
 from common.emailCollect import sendReportWithAtt

@@ -40,7 +40,7 @@ def getDirOrFileList(p, choose):
 class HTMLFileRunner(Template_mixin):
     """
     """
-    print Template_mixin.HTML_TMPL_CEREPORT
+#     print Template_mixin.HTML_TMPL_CEREPORT
     def __init__(self, title=None, description=None):
         if title is None:
             self.title = self.DEFAULT_TITLE
@@ -84,7 +84,9 @@ class HTMLFileRunner(Template_mixin):
         file_object.close()
 
 if __name__ == '__main__':
-    folderPath = "Z:\\reports\\"
-    HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
+    hostname = socket.gethostname()
+    print socket.gethostbyname(hostname)
+#     folderPath = "Z:\\reports\\"
+#     HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
 #     folderPath = "Z:\\reports"
 #     HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)

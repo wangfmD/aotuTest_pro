@@ -9,7 +9,7 @@ import smtplib
 import sys
 import time
 import unittest
-from HTMLTestRunner import HTMLTestRunner
+from common.generateHtml.HTMLTestRunner import HTMLTestRunner
 from email import encoders
 from email.header import Header
 from email.mime.base import MIMEBase
