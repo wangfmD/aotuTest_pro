@@ -59,7 +59,7 @@ MCUequipment = {
 }
 
 
-class addDriversData(unittest.TestCase):
+class adddriversData(unittest.TestCase):
     ''''学校教室设备基础数据添加'''
 
     def setUp(self):

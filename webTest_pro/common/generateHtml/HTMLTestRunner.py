@@ -688,6 +688,7 @@ class HTMLTestRunner(Template_mixin):
         hostname = socket.gethostname()
         ip_add = socket.gethostbyname(hostname)
         sqlAdd = self.sqlAdd["hostadd"]
+        print sqlAdd
         strs=requests.get("http://"+sqlAdd+"/middleclient/version")
         s=json.loads(strs.text)
         project_name_add=os.environ.get("PY_DEV_HOME")

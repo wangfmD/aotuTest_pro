@@ -62,7 +62,7 @@ def exec_test():
       Maintainer: wangfm
     """
 
-    filesql = 'G:\\00project\\sql_lib\\middle_10.sql'
+    filesql = 'G:\\00project\\sql_lib\\middle.sql'
     dbinfo = {'host': '10.1.0.56',
               'usr': 'root',
               'passwd': 'Sanbu@123456',

@@ -56,6 +56,9 @@ loginInfo = {}
 
 execEnv = {}
 
+#流媒体地址配置
+streaming_media = {}
+
 # # 测试报告路径不存在，则创建该路径
 # if os.path.exists(logPath) == True:
 #     print "The log path exist!"
@@ -94,6 +97,8 @@ for s in sections:
     if s.lower().find('env_para') != -1:
         execEnv.setdefault('execType', cf.get(s, 'execType'))
         execEnv.setdefault('remoteUrl', cf.get(s, 'remoteUrl'))
+    if s.lower().find('streaming_media') != -1:
+        streaming_media.setdefault('serverIps', cf.get(s, 'serverIps'))
 
 for s in classroom_tmp:
     opts = cf.options(s)

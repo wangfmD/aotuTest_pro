@@ -11333,5 +11333,5 @@ INSERT INTO `base_type` VALUES ('413b0b74-80be-4a12-ba0f-b025df4b0627', '547796e
 INSERT INTO `base_type` VALUES ('9d586c25-a0bf-44c9-80f7-c835e5df0e05', '547796ea-781f-4a51-b290-eb357259ea18', '19', '1902', 'å›ºå®šæ‘„åƒæœº', 'å›ºå®šæ‘„åƒæœº', '1');
 INSERT INTO `base_type` VALUES ('14476625-3448-43b5-9956-44f901dee358', '73efc5e4-d542-4be9-989e-77bb69effe4c', '20', '2001', 'æµ·åº·', 'æµ·åº·', '1');
 INSERT INTO `base_type` VALUES ('9f4f7fdc-e90b-488b-baa4-99f75db13f71', '73efc5e4-d542-4be9-989e-77bb69effe4c', '20', '2002', 'å¤§å', 'å¤§å', '1');
--- ÉèÖÃ×Ô¶¯ÉóºË£¬×Ô¶¯·¢²¼ Îªno
+-- ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ë£ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ Îªno
 UPDATE base_sys_config SET config_value='no' WHERE config_key IN ('resource_is_publish','resource_is_examine ');

@@ -2,15 +2,17 @@
 import os
 import sys
 from time import sleep
+from _env import addPaths
+addPaths(".")
 
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 import SendKeys
 import win32con
 import win32api
+import common.init as init
 
-from _env import addPaths
-addPaths(".")
+
 
 from common.init import loginInfo
 from model.baseActionAdd import user_login
@@ -18,12 +20,13 @@ from model.baseActionAdd import user_login
 reload(sys)
 sys.setdefaultencoding("utf-8")
 '''添加节目数据'''
-videoData = [{
+videoData = [
+{
     'addTypeSelect': u'公共资源库',
     'addFileN': u'测试节目名(视频mp4)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'001.mp4',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '001.mp4',
@@ -33,7 +36,7 @@ videoData = [{
     'addFileN': u'测试节目名(视频asf)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'002.asf',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '002.asf',
@@ -43,17 +46,18 @@ videoData = [{
     'addFileN': u'测试节目名(视频3gp)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'003.3gp',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '003.3gp',
     'sleepTime': '10'
-}, {
+}, 
+{
     'addTypeSelect': u'公共资源库',
     'addFileN': u'测试节目名(视频mpg)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'004.mpg',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '004.mpg',
@@ -63,7 +67,7 @@ videoData = [{
     'addFileN': u'测试节目名(视频mov)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'005.mov',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '005.mov',
@@ -73,7 +77,7 @@ videoData = [{
     'addFileN': u'测试节目名(视频wmv)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'006.wm',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '006.wmv',
@@ -83,7 +87,7 @@ videoData = [{
     'addFileN': u'测试节目名(视频flv)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'007.flv',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '007.flv',
@@ -93,7 +97,7 @@ videoData = [{
     'addFileN': u'测试节目名(视频avi)',
     'addFileDesc': u'测试备注信息',
     'videoType': u'视频',
-    'fileName': u'文件名',
+    'fileName': u'008.avi',
     'uploadType': 'video',
     'disk': 'Z:\\testResource\\py',
     'fileNames': '008.avi',
@@ -103,7 +107,7 @@ videoData = [{
     'addFileN': u'测试节目名1(文档docx)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'001.docx',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '001.docx',
@@ -113,7 +117,7 @@ videoData = [{
     'addFileN': u'测试节目名1(文档pptx)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'002.pptx',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '002.pptx',
@@ -123,7 +127,7 @@ videoData = [{
     'addFileN': u'测试节目名1(文档ppt)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'003.ppt',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '003.ppt',
@@ -133,7 +137,7 @@ videoData = [{
     'addFileN': u'测试节目名1(文档xlsx)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'004.xlsx',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '004.xlsx',
@@ -143,7 +147,7 @@ videoData = [{
     'addFileN': u'测试节目名1(文档doc)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'005.doc',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '005.doc',
@@ -153,17 +157,27 @@ videoData = [{
     'addFileN': u'测试节目名1(文档txt)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'006.tx',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '006.txt',
+    'sleepTime': '20'
+},{
+    'addTypeSelect': u'公共资源库',
+    'addFileN': u'测试节目名1(文档txt)',
+    'addFileDesc': u'测试备注信息1',
+    'videoType': u'文档',
+    'fileName': u'006zh.tx',
+    'uploadType': 'doc',
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '006zh.txt',
     'sleepTime': '20'
 }, {
     'addTypeSelect': u'公共资源库',
     'addFileN': u'测试节目名1(文档pdf)',
     'addFileDesc': u'测试备注信息1',
     'videoType': u'文档',
-    'fileName': u'文件名1',
+    'fileName': u'007.pdf',
     'uploadType': 'doc',
     'disk': 'Z:\\testResource\\py\\wd',
     'fileNames': '007.pdf',
@@ -183,12 +197,32 @@ videoData = [{
     'addFileN': u'测试节目名2(图片)',
     'addFileDesc': u'测试备注信息2',
     'videoType': u'图片',
-    'fileName': u'文件名2',
+    'fileName': u'banner01.png',
     'uploadType': 'pictrue',
-    'disk': 'Z:\\testResource',
-    'fileNames': '002.PNG',
-    'sleepTime': '20'
+    'disk': 'Z:\\testResource\\py\\pic',
+    'fileNames': 'banner01.png',
+    'sleepTime': '4'
 }, {
+    'addTypeSelect': u'公共资源库',
+    'addFileN': u'测试节目名2(图片PNG)',
+    'addFileDesc': u'测试备注信息2',
+    'videoType': u'图片',
+    'fileName': u'banner01.jpg',
+    'uploadType': 'pictrue',
+    'disk': 'Z:\\testResource\\py\\pic',
+    'fileNames': 'banner01.jpg',
+    'sleepTime': '4'
+},{
+    'addTypeSelect': u'公共资源库',
+    'addFileN': u'测试节目名2(图片PNG)',
+    'addFileDesc': u'测试备注信息2',
+    'videoType': u'图片',
+    'fileName': u'banner03.jpg',
+    'uploadType': 'pictrue',
+    'disk': 'Z:\\testResource\\py\\pic',
+    'fileNames': 'banner03.jpg',
+    'sleepTime': '4'
+},{
     'addTypeSelect': u'公共资源库',
     'addFileN': u'测试节目名2(水印)',
     'addFileDesc': u'测试备注信息3',
@@ -197,7 +231,7 @@ videoData = [{
     'uploadType': 'watermark',
     'disk': 'Z:\\testResource',
     'fileNames': '002.PNG',
-    'sleepTime': '20'
+    'sleepTime': '4'
 }, {
     'addTypeSelect': u'公共资源库',
     'addFileN': u'测试节目名2(资料)',
@@ -207,7 +241,7 @@ videoData = [{
     'uploadType': 'data',
     'disk': 'Z:\\testResource',
     'fileNames': '002.PNG',
-    'sleepTime': '20'
+    'sleepTime': '4'
 }]
 
 
@@ -234,7 +268,7 @@ def add_UploadVideo(driver, **kwargs):
     driver.find_element_by_id("addFileDesc").clear()
     driver.find_element_by_id("addFileDesc").send_keys(kwargs[
         "addFileDesc"])
-    # 确定按钮
+    # 确定按钮   测试节目名1(文档xlsx)   测试节目名(视频mp4)
     if kwargs["addFileN"] == "测试节目名(视频mp4)":
         driver.find_element_by_id("makeSureProgram").click()
     driver.find_element_by_id("makeSureProgram").click()
@@ -251,7 +285,7 @@ def add_UploadVideo(driver, **kwargs):
     # 点击搜索出来的结果
     driver.find_element_by_xpath("//li/span").click()
     # 点击上传文件
-    sleep(5)
+    sleep(3)
     driver.find_element_by_xpath(
         "//button[@onclick='upInfoDetail()']").click()
     sleep(1)
@@ -299,13 +333,37 @@ def add_UploadVideo(driver, **kwargs):
             "uploadType"] == "watermark":
         driver.find_element_by_id("clipBtn").click()
     # 确定按钮
-
-    # 上传文件确定按钮
+  
+#    上传文件确定按钮
     driver.find_element_by_id("upDetail").click()
-    print kwargs["sleepTime"]
     sleep(float(kwargs["sleepTime"]))
-
-
+     
+    Select(driver.find_element_by_id(
+        "pTypeSelect")).select_by_visible_text(kwargs["addTypeSelect"])
+    sleep(1)
+    # 搜索文件名
+    driver.find_element_by_id("searchT").clear()
+    driver.find_element_by_id("searchT").send_keys(kwargs["addFileN"])
+    # 搜索按钮
+    driver.find_element_by_xpath("//div/a/i").click()
+    program = driver.find_element_by_id("program").text
+    if program != "无数据" :
+        # 点击搜索出来的结果
+        driver.find_element_by_xpath("//li/span").click()
+        
+        driver.find_element_by_id("fileName").clear()
+        driver.find_element_by_id("fileName").send_keys(kwargs["fileName"])
+        
+        driver.find_element_by_xpath("//div[2]/div/button").click()
+        
+        fileList = driver.find_element_by_css_selector("#fileList div").text
+        print fileList
+        if fileList!="此节目下未有文件明细信息！" :
+            print kwargs['fileName']+"节目添加成功"
+        else :
+             print kwargs['fileName']+"节目添加失败"
+    else :
+        print kwargs['addFileN']+"新建节目失败"
 
 '''添加视频任务'''
 videoTaskData = [{
@@ -483,45 +541,52 @@ def delete_UploadVideo(driver, **kwargs):
     print program
 
 
-# def user_login(driver, **kwargs):
-#     """
-#     Func desc
-#     Args:
-#     -
-#     Usage:
-#
-#     """
-#     print "loginfo:\nuser:{0}，platform:{1}".format(kwargs['username'],
-#                                                    kwargs['platformname'])
-#     # open url
-#     driver.get('http://10.1.0.57' + "/middleclient/index.do")
-#     driver.maximize_window()
-#     driver.refresh()
-#     # select platform and login
-#     Select(driver.find_element_by_id("platform")).select_by_visible_text(
-#         kwargs['platformname'])
-#     driver.find_element_by_id('s_username').clear()
-#     driver.find_element_by_id('s_username').send_keys(kwargs['username'])
-#     driver.find_element_by_id('s_password').clear()
-#     driver.find_element_by_id('s_password').send_keys('111111')
-#     # click login btn
-#     driver.find_element_by_name('submit').click()
-#     sleep(0.5)
-
+'''添加流媒体地址管理'''
+streamingData = [{'addName': u'19流媒体地址',"ipAdd":init.db_conf["hostadd"],"serverIps":init.streaming_media["serverIps"],"addType":u"内网"}]
+def add_Streaming(driver, **kwargs):
+    driver.refresh()
+    driver.find_element_by_link_text(u"文件管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"流媒体地址管理").click()
+    sleep(1)
+    mbs_addlist = driver.find_element_by_css_selector("#mbs_addlist").text
+    
+    if mbs_addlist=="":
+        #添加按钮
+        driver.find_element_by_id("add_mbsadd_setting").click()
+        sleep(1)
+        driver.find_element_by_id("addName").clear()
+        driver.find_element_by_id("addName").send_keys(kwargs["addName"])
+        
+        driver.find_element_by_id("ipAdd").clear()
+        driver.find_element_by_id("ipAdd").send_keys(kwargs["ipAdd"])
+         
+        driver.find_element_by_id("serverIps").clear()
+        driver.find_element_by_id("serverIps").send_keys(kwargs["serverIps"])
+        Select(driver.find_element_by_id("addType")).select_by_visible_text(kwargs["addType"])
+        
+        driver.find_element_by_id("btnSaveMbsAdd").click()
+        print "流媒体地址已经添加"
+    else :
+        print "流媒体地址已经存在"
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
     user_login(driver, **loginInfo)
-    for i in range(1, 100):
-        for itme in videoData:
-            add_UploadVideo(driver, **itme)
-        for itme in videoTaskData:
-            add_videoTask(driver, **itme)
-        for itme in teskListData:
-            select_teskList(driver, **itme)
-        driver.close()
-        driver.quit()
-        driver = None
+#     for itme in videoData:
+#         add_UploadVideo(driver, **itme)
+    for itme in streamingData:
+        add_Streaming(driver, **itme)
+#     for i in range(1, 100):
+#         for itme in videoData:
+#             add_UploadVideo(driver, **itme)
+#         for itme in videoTaskData:
+#             add_videoTask(driver, **itme)
+#         for itme in teskListData:
+#             select_teskList(driver, **itme)
+#         driver.close()
+#         driver.quit()
+#         driver = None
     # dialog = win32gui.FindWindow('#32770', u'文件上传')  # 对话框
     # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
     # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
