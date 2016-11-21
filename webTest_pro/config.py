@@ -130,6 +130,6 @@ class TestRunner:
             HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
 
 if __name__ == '__main__':
-    runner = TestRunner('dev','is')
+    runner = TestRunner('dev_wf_57','is')
     runner.run()
 #     print init.db_conf["hostadd"]

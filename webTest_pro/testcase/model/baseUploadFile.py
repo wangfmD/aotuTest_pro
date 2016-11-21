@@ -253,6 +253,8 @@ def add_UploadVideo(driver, **kwargs):
     driver.refresh()
     driver.find_element_by_link_text(u"文件管理").click()
     sleep(0.5)
+    driver.find_element_by_link_text(u"任务列表").click()
+    sleep(1)
     driver.find_element_by_link_text(u"文件目录").click()
     sleep(1)
     driver.find_element_by_xpath("//div/div[2]/button").click()
@@ -268,9 +270,7 @@ def add_UploadVideo(driver, **kwargs):
     driver.find_element_by_id("addFileDesc").clear()
     driver.find_element_by_id("addFileDesc").send_keys(kwargs[
         "addFileDesc"])
-    # 确定按钮   测试节目名1(文档xlsx)   测试节目名(视频mp4)
-    if kwargs["addFileN"] == "测试节目名(视频mp4)":
-        driver.find_element_by_id("makeSureProgram").click()
+    # 确定按钮   
     driver.find_element_by_id("makeSureProgram").click()
     sleep(1)
     # ########################
@@ -309,23 +309,8 @@ def add_UploadVideo(driver, **kwargs):
             "uploadType"] == "watermark":
         driver.find_element_by_id("file").click()
     sleep(2)
-    ################################点击文件操作######################################
-    # ctrl+L
-    win32api.keybd_event(17, 0, 0, 0)  # ctrl键位码是17
-    win32api.keybd_event(76, 0, 0, 0)  # L键位码是73
-    win32api.keybd_event(76, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
-    win32api.keybd_event(17, 0, win32con.KEYEVENTF_KEYUP, 0)
-    SendKeys.SendKeys(kwargs["disk"])  # 输入磁盘
-    SendKeys.SendKeys('{ENTER}')  # 发送回车键
-    sleep(4)
-    # ALT+N
-    win32api.keybd_event(18, 0, 0, 0)  # ALT键位码是18
-    win32api.keybd_event(78, 0, 0, 0)  # N键位码是78
-    win32api.keybd_event(78, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
-    win32api.keybd_event(18, 0, win32con.KEYEVENTF_KEYUP, 0)
-    SendKeys.SendKeys(kwargs["fileNames"])  # 发送文件地址
-    SendKeys.SendKeys('{ENTER}')  # 发送回车键
-    ################################点击文件操作########################################
+    #文件上传方法
+    file_upload(kwargs["disk"],kwargs["fileNames"])
     sleep(4)
     # m.click(984L, 618L)
     # 如果是图片   就需要点击截取  不是图片不需要
@@ -357,7 +342,6 @@ def add_UploadVideo(driver, **kwargs):
         driver.find_element_by_xpath("//div[2]/div/button").click()
         
         fileList = driver.find_element_by_css_selector("#fileList div").text
-        print fileList
         if fileList!="此节目下未有文件明细信息！" :
             print kwargs['fileName']+"节目添加成功"
         else :
@@ -569,14 +553,430 @@ def add_Streaming(driver, **kwargs):
         print "流媒体地址已经添加"
     else :
         print "流媒体地址已经存在"
+        
+
+'''添加节目数据'''
+contntVideoData = [
+{
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '001.mp4',
+    'fileName': '001mp4',
+    'sleepTime': '45',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '002.asf',
+    'fileName': '002asf',
+    'sleepTime': '20',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '003.3gp',
+    'fileName': '0033gp',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, 
+{
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '004.mpg',
+    'fileName': '004mpg',
+    'sleepTime': '15',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '005.mov',
+    'fileName': '005mov',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '006.wmv',
+    'fileName': '006wmv',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '007.flv',
+    'fileName': '007flv',
+    'sleepTime': '45',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '008.avi',
+    'fileName': '008avi',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'视频管理'
+}, 
+{
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '001.docx',
+    'fileName': '001docx',
+    'sleepTime': '4',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '002.pptx',
+    'fileName': '002pptx',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '003.ppt',
+    'fileName': '003ppt',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '004.xlsx',
+    'fileName': '004xlsx',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '005.doc',
+    'fileName': '005doc',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '006.txt',
+    'fileName': '006txt',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+},{
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '006zh.txt',
+    'fileName': '006zhtxt',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '007.pdf',
+    'fileName': '007pdf',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+}, {
+    'disk': 'Z:\\testResource\\py\\wd',
+    'fileNames': '008.xls',
+    'fileName': '008xls',
+    'sleepTime': '6',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'文档管理'
+},
+{
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '001.mp4',
+    'fileName': '001mp4',
+    'sleepTime': '45',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '002.asf',
+    'fileName': '002asf',
+    'sleepTime': '20',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '003.3gp',
+    'fileName': '0033gp',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, 
+{
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '004.mpg',
+    'fileName': '004mpg',
+    'sleepTime': '15',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '005.mov',
+    'fileName': '005mov',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '006.wmv',
+    'fileName': '006wmv',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '007.flv',
+    'fileName': '007flv',
+    'sleepTime': '45',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, {
+    'disk': 'Z:\\testResource\\py',
+    'fileNames': '008.avi',
+    'fileName': '008avi',
+    'sleepTime': '10',
+    'gradetype':'小学',
+    'gradename':'一年级',
+    'subjectname':'音乐',
+    'Schapter':'音乐第一章',
+    'Ssection':'',
+    'sknow':'',
+    'remark':'测试描述',
+    'type_click':'微课管理'
+}, 
+]
+
+def add_ContntVideo(driver, **kwargs):
+    print "添加节目信息：{0}，{1}，{2}，{3}，{4}".format(
+        kwargs['disk'], kwargs['fileNames'], kwargs['sleepTime'],
+        kwargs['gradetype'], kwargs['remark'])
+    driver.refresh()
+    driver.find_element_by_link_text(u"文件管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(u"任务列表").click()
+    sleep(1)
+    driver.find_element_by_link_text(u"内容管理").click()
+    sleep(0.5)
+    driver.find_element_by_link_text(kwargs["type_click"]).click()
+    sleep(1)
+    # 点击上传按钮
+    driver.find_element_by_id("upRes").click()
+    sleep(1)
+    #  点击请选择..
+    driver.find_element_by_id("swfu-placeholder").click()
+    sleep(1)
+    #文件上传方法
+    file_upload(kwargs["disk"],kwargs["fileNames"])
+    sleep(4)
+    Select(driver.find_element_by_id("gradetype")).select_by_visible_text(
+        kwargs["gradetype"])
+    Select(driver.find_element_by_id("gradename")).select_by_visible_text(
+        kwargs["gradename"])
+    Select(driver.find_element_by_id("subjectname")).select_by_visible_text(
+        kwargs["subjectname"])
+    Select(driver.find_element_by_id("Schapter")).select_by_visible_text(
+        kwargs["Schapter"])
+#     Select(driver.find_element_by_id("Ssection")).select_by_visible_text(
+#         kwargs["Ssection"])
+#     Select(driver.find_element_by_id("sknow")).select_by_visible_text(
+#         kwargs["sknow"])
+    sleep(1)
+    driver.find_element_by_id("title").clear()
+    driver.find_element_by_id("title").send_keys(kwargs["fileName"])
+    #确定按钮
+    driver.find_element_by_css_selector(".submitFile").click()
+    sleep(float(kwargs["sleepTime"]))
+    driver.find_element_by_id("bysearchtext").clear()
+    driver.find_element_by_id("bysearchtext").send_keys(kwargs["fileName"])
+    driver.find_element_by_id("search_btn").click()
+    sleep(2)
+    videolist = driver.find_element_by_id("videolist").text
+    print videolist
+    if videolist !="":
+        print kwargs["fileNames"]+"上传"+kwargs["type_click"]+"成功"
+    else :
+        print kwargs["fileNames"]+"上传"+kwargs["type_click"]+"失败"
+        
+    sleep(6)
+#文件上传方法
+def file_upload(disk,fileNames):
+    sleep(1)
+    ################################点击文件操作######################################
+    #shift+alt
+#     win32api.keybd_event(16, 0, 0, 0)  # shift
+#     win32api.keybd_event(18, 0, 0, 0)  # L键位码是73
+#     win32api.keybd_event(18, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
+#     win32api.keybd_event(16,0,win32con.KEYEVENTF_KEYUP,0)
+#     sleep(2)
+    # ctrl+L
+    win32api.keybd_event(17, 0, 0, 0)  # ctrl键位码是17
+    win32api.keybd_event(76, 0, 0, 0)  # L键位码是73
+    win32api.keybd_event(76, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
+    win32api.keybd_event(17, 0, win32con.KEYEVENTF_KEYUP, 0)
+    SendKeys.SendKeys(disk)  # 输入磁盘
+    SendKeys.SendKeys('{ENTER}')  # 发送回车键
+    sleep(4)
+    # ALT+N
+    win32api.keybd_event(18, 0, 0, 0)  # ALT键位码是18
+    win32api.keybd_event(78, 0, 0, 0)  # N键位码是78
+    win32api.keybd_event(78, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
+    win32api.keybd_event(18, 0, win32con.KEYEVENTF_KEYUP, 0)
+    SendKeys.SendKeys(fileNames)  # 发送文件地址
+    SendKeys.SendKeys('{ENTER}')  # 发送回车键
+    ################################点击文件操作########################################
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    user_login(driver, **loginInfo)
+    user_login(driver,**loginInfo)
+#     for itme in contntVideoData:
+#         add_ContntVideo(driver, **itme)
 #     for itme in videoData:
 #         add_UploadVideo(driver, **itme)
-    for itme in streamingData:
-        add_Streaming(driver, **itme)
+#     for itme in streamingData:
+#         add_Streaming(driver, **itme)
 #     for i in range(1, 100):
 #         for itme in videoData:
 #             add_UploadVideo(driver, **itme)
