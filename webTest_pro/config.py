@@ -126,7 +126,10 @@ class TestRunner:
         if self.generateHtmlType=='is':
             folderPath = "Z:\\reports\\"
             hostname = socket.gethostname()
-            shutil.copy(self.filename, folderPath+socket.gethostbyname(hostname) + "report\\"+restult)
+            mkdirFolder = folderPath+socket.gethostbyname(hostname) + "report\\"
+            if not  os.path.exists(mkdirFolder):
+                os.mkdir(mkdirFolder)
+            shutil.copy(self.filename, mkdirFolder)
             HTMLFileRunner(title='测试报告 ', description='用例执行情况：').generatr(folderPath)
 
 if __name__ == '__main__':
