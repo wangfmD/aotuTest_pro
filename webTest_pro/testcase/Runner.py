@@ -3,5 +3,5 @@ addPaths('.')
 from config import TestRunner
 
 if __name__ == '__main__':
-    runner = TestRunner('dev_wf_57','is')
+    runner = TestRunner('dev_56')
     runner.run()

@@ -30,9 +30,13 @@ SET_LOG_LEVEL(logger, 'info')
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 从生成的文件中读取配置文件路径
 tmpEnvFile = home_path + '\webTest_pro\common\.tmp'
-with open(tmpEnvFile, 'r+') as f:
-    pathTmp = f.readlines()
-cfg_path = pathTmp[0]
+if os.path.exists(tmpEnvFile):
+    with open(tmpEnvFile, 'r+') as f:
+        pathTmp = f.readlines()
+    cfg_path = pathTmp[0]
+else:
+    cfg_path = home_path + '\webTest_pro\cfg\init_default.conf'
+
 L_INFO(logger, 'The config path >> %s', cfg_path)
 
 # sql文件存放路径

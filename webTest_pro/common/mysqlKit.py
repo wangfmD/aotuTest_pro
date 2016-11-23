@@ -1,7 +1,7 @@
 # coding:utf-8
 import MySQLdb
 from MySQLdb import cursors
-from init import db_conf
+from init import db_conf, streaming_media
 
 
 # print dir(MySQLdb.connect)
@@ -15,15 +15,17 @@ user = 'root'
 passwd = 'Sanbu@123456'
 db = 'middle'
 port = 13306
+mediaAddr = streaming_media['serverIps']
 
 sqlpara = [{'col_name': 'live_server_url', 'col_value': 'rtmp://' + hostadd + ':1935/live/'},
            {'col_name': 'web_server_resource', 'col_value': 'http://' + hostadd},
-           {'col_name': 'file_server_url', 'col_value': hostadd + '/filesrv'},
+           {'col_name': 'file_server_url', 'col_value': mediaAddr + '/filesrv'},
            {'col_name': 'mcu_center_host', 'col_value': hostadd},
-           {'col_name': 'file_server_url_visit', 'col_value': hostadd + ':11194'},
+           {'col_name': 'file_server_url_visit', 'col_value': mediaAddr + ':11194'},
            {'col_name': 'message_center_host', 'col_value': hostadd},
-           {'col_name': 'file_server_ftp_host', 'col_value': hostadd},
-           {'col_name': 'web_server_client', 'col_value': 'http://' + hostadd + '/middleclient/index.do'}
+           {'col_name': 'file_server_ftp_host', 'col_value': mediaAddr},
+           {'col_name': 'web_server_client', 'col_value': 'http://' + hostadd + '/middleclient/index.do'},
+           {'col_name': 'centerfile_host', 'col_value': hostadd}
            ]
 
 
@@ -83,11 +85,13 @@ if __name__ == '__main__':
     #     c.updaeDb("UPDATE base_sys_config set CONFIG_VALUE = '%s' where CONFIG_KEY = '%s'" % (s['col_value'], s['col_name']))
 
     # print type(db_conf['host']), db_conf['user'], db_conf['passwd'], db_conf['db'], int(db_conf['port'])
-    sql = "select ID,CLASSROOM_ID from interact_teach_lesson where LESSON_NAME='hdk_long'"
-    c = sqlOperating()
-    result = c.execQury(sql)
-    for lie in result:
-        # print dir(lie)
-        # print lie
-        for k, v in lie.iteritems():
-            print k, "=", lie[k]
+
+
+    # sql = "select ID,CLASSROOM_ID from interact_teach_lesson where LESSON_NAME='hdk_long'"
+    # c = sqlOperating()
+    # result = c.execQury(sql)
+    # for lie in result:
+        # for k, v in lie.iteritems():
+            # print k, "=", lie[k]
+    print mediaAddr
+
