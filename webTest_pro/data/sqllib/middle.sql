@@ -11333,5 +11333,37 @@ INSERT INTO `base_type` VALUES ('413b0b74-80be-4a12-ba0f-b025df4b0627', '547796e
 INSERT INTO `base_type` VALUES ('9d586c25-a0bf-44c9-80f7-c835e5df0e05', '547796ea-781f-4a51-b290-eb357259ea18', '19', '1902', '固定摄像机', '固定摄像机', '1');
 INSERT INTO `base_type` VALUES ('14476625-3448-43b5-9956-44f901dee358', '73efc5e4-d542-4be9-989e-77bb69effe4c', '20', '2001', '海康', '海康', '1');
 INSERT INTO `base_type` VALUES ('9f4f7fdc-e90b-488b-baa4-99f75db13f71', '73efc5e4-d542-4be9-989e-77bb69effe4c', '20', '2002', '大华', '大华', '1');
--- �����Զ���ˣ��Զ����� Ϊno
-UPDATE base_sys_config SET config_value='no' WHERE config_key IN ('resource_is_publish','resource_is_examine ');
+-- �����Զ���ˣ��Զ����� Ϊno
+UPDATE base_sys_config SET config_value='no' WHERE config_key IN ('resource_is_publish','resource_is_examine ');-- 更新导航栏数据
+delete from zy_navigation_template where nId in ('2','3','1','4','5','6','d6364202-f78d-47c0-bdd4-7ece69f5adc6');
+
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('2','37232a1e-af8a-4c03-816b-8d2c644281f7','0002','2','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('3','a3315a2c-b52c-491d-ae75-99e0ece03924','0003','3','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('1','57fca910-d2cb-462d-82c3-b5a1e46fbae7','0002','1','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('4','87d93c57-a133-4406-b7d0-d3dc5c8e7524',NULL,'4','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('5','18f66273-f662-4344-94fb-fe90e006a485',NULL,'5','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('6','f814e41e-8e71-4e87-95f3-f81aa5e8c458',NULL,'6','0');
+insert into `zy_navigation_template` (`nId`, `tId`, `PLAT_MARK`, `sort`, `status`) values('d6364202-f78d-47c0-bdd4-7ece69f5adc6',NULL,NULL,'7','0');
+
+-- 评分模板增加租户字段
+ALTER TABLE jy_score_module ADD COLUMN platmark VARCHAR(36) COMMENT '租户id';
+
+-- 修改教研的跳转配置
+UPDATE base_sys_config SET config_value='http://10.1.0.51/jyresource' WHERE id='40efe5d7-ba55-4622-9af8-3362f3701104';
+
+-- 资源日志表添加字段
+ALTER TABLE sys_deal_flow ADD COLUMN OPERATE_TYPE VARCHAR(40) COMMENT '操作类型';
+ALTER TABLE sys_deal_flow ADD COLUMN PLAT_MARK VARCHAR(36) COMMENT '租户主键';
+ALTER TABLE sys_deal_flow ADD COLUMN MODULE_CODE VARCHAR(36) COMMENT '模块编码';
+ALTER TABLE sys_deal_flow ADD COLUMN IP VARCHAR(20) COMMENT '用户IP';
+
+-- 隐藏‘用户管理’菜单
+UPDATE auth_module SET STATUS=3 WHERE id='cc241f78-f42b-48a2-bf3d-5104c7100006';
+
+-- 插入课堂类型：在线观摩
+insert into `base_type` (`ID`, `KIND_ID`, `KIND_CODE`, `TYPE_CODE`, `TYPE_NAME`, `DESCRIPTION`, `STATUS`) values('d9613b6a-e614-423d-ba1c-8cd78665b67f','648144f7-5b9f-40ba-8634-661ee15389d3','14','1405','在线观摩','在线观摩','1');
+
+-- 插入日志类型
+insert into `base_type` (`ID`, `KIND_ID`, `KIND_CODE`, `TYPE_CODE`, `TYPE_NAME`, `DESCRIPTION`, `STATUS`) values('aad959c4-b30e-4ec3-aa6f-49987cee2dfd','16','16','1622','文档管理','文档管理','1');
+insert into `base_type` (`ID`, `KIND_ID`, `KIND_CODE`, `TYPE_CODE`, `TYPE_NAME`, `DESCRIPTION`, `STATUS`) values('acfbf2e4-7700-4d45-b4e9-5841c368c162','16','16','1621','微课管理','微课管理','1');
+insert into `base_type` (`ID`, `KIND_ID`, `KIND_CODE`, `TYPE_CODE`, `TYPE_NAME`, `DESCRIPTION`, `STATUS`) values('f34f340e-7b43-4982-8c0b-5396f650a622','16','16','1620','视频管理','视频管理','1');

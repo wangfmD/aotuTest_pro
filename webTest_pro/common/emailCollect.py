@@ -12,6 +12,7 @@ from email.header import Header
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from webTest_pro.common.logger import logger
 
 
 def sendReportWithAtt(attachment, *args):
@@ -67,7 +68,7 @@ def sendReportWithAtt(attachment, *args):
     smtp.sendmail(msgRoot['From'], msgRoot['To'].split(';'),
                   msgRoot.as_string())
     smtp.quit()
-    print('test report has send out!')
+    logger.info('test report has send out!')
 
 
 def sendReport(file_new):
@@ -93,4 +94,4 @@ def sendReport(file_new):
     smtp.sendmail(msg['From'], msg['To'].split(';'), msg.as_string())
 
     smtp.quit()
-    print('test report has send out!')
+    logger.info('test report has send out!')

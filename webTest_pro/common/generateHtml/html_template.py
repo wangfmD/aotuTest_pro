@@ -48,10 +48,10 @@ class Template_mixin(object):
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                 <link rel="stylesheet" href="../assets/css/bootstrap.css" />
                 <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.css"/>  
-                <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
-                 <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-                <script type="text/javascript" src="../assets/js/bootstrap-datetimepicker.js"></script>
-                <script type="text/javascript" src="../assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
+                <script type="text/javascript" centerAPI_pro="../assets/js/jquery.min.js"></script>
+                 <script type="text/javascript" centerAPI_pro="../assets/js/bootstrap.min.js"></script>
+                <script type="text/javascript" centerAPI_pro="../assets/js/bootstrap-datetimepicker.js"></script>
+                <script type="text/javascript" centerAPI_pro="../assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
                 <title>%(title)s</title>
                 <script type="text/javascript">
@@ -163,10 +163,10 @@ class Template_mixin(object):
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                 <link rel="stylesheet" href="assets/css/bootstrap.css" />
                 <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.css"/>  
-                <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-                 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-                <script type="text/javascript" src="assets/js/bootstrap-datetimepicker.js"></script>
-                <script type="text/javascript" src="assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
+                <script type="text/javascript" centerAPI_pro="assets/js/jquery.min.js"></script>
+                 <script type="text/javascript" centerAPI_pro="assets/js/bootstrap.min.js"></script>
+                <script type="text/javascript" centerAPI_pro="assets/js/bootstrap-datetimepicker.js"></script>
+                <script type="text/javascript" centerAPI_pro="assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
     
                 <title>%(title)s</title>
                 <script type="text/javascript">

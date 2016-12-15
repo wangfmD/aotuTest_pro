@@ -51,6 +51,36 @@ def execFileSql(*args, **kwargs):
     print output
     print "end."
 
+
+def execFileSqlOnly(*args, **kwargs):
+    """
+      Function: execFileSql()
+      Desc: 删除数据库，并重建，最后刷库
+      Args:
+         - :file
+         - :**
+      Return: result
+      Usage: execFileSql(file, **)
+      Maintainer: wangfm
+      CreateDate: 2016-11-10 15:57:02
+    """
+    # init data
+    filesql = args[0]
+    host = kwargs['host']
+    usr =  kwargs['usr']
+    passwd = kwargs['passwd']
+    port = int(kwargs['port'])
+    database = kwargs['database']
+
+
+    process = Popen('mysql -h%s -P%s -u%s -p%s %s' \
+                    %(host, port, usr, passwd, database), stdout=PIPE, stdin=PIPE, shell=True)
+    print "1------"
+    print "exec sql,wait..."
+    output = process.communicate('source '+filesql)
+    print output
+    print "end."
+
 def exec_test():
     """
       Function: exec_test()
@@ -62,7 +92,7 @@ def exec_test():
       Maintainer: wangfm
     """
 
-    filesql = 'G:\\00project\\sql_lib\\middle.sql'
+    filesql = 'G:\\00project\\sql_lib\\middle_10.sql'
     dbinfo = {'host': '10.1.0.56',
               'usr': 'root',
               'passwd': 'Sanbu@123456',

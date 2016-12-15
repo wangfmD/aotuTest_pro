@@ -277,12 +277,12 @@ function html_escape(s) {
 
 function getExplorerInfo() {
  var explorer = window.navigator.userAgent.toLowerCase() ;
- //ie 
+ //ie
  if (explorer.indexOf("msie") >= 0) {
     var ver=explorer.match(/msie ([\d.]+)/)[1];
     return {type:"IE",version:ver};
  }
- //firefox 
+ //firefox
  else if (explorer.indexOf("firefox") >= 0) {
     var ver=explorer.match(/firefox\/([\d.]+)/)[1];
     return {type:"Firefox",version:ver};
@@ -309,7 +309,7 @@ function getExplorerInfo() {
 
 //$(function(){
 //   $("#browserVersion").html(getExplorerInfo().type+"\nversion:"+getExplorerInfo().version)
- 
+
 //})
 // alert("type:"+getExplorerInfo().type+"\nversion:"+getExplorerInfo().version);
 
@@ -638,10 +638,11 @@ class HTMLTestRunner(Template_mixin):
     """
     """
 
-    def __init__(self, stream=sys.stdout, verbosity=1, title=None, description=None, sqlAdd=None):
+    def __init__(self, stream=sys.stdout, verbosity=1, title=None, description=None, sqlAdd=None, version_add=None):
         self.stream = stream
         self.verbosity = verbosity
         self.sqlAdd = sqlAdd
+        self.version_add = version_add
         if title is None:
             self.title = self.DEFAULT_TITLE
         else:
@@ -682,15 +683,12 @@ class HTMLTestRunner(Template_mixin):
         Override this to add custom attributes.
         """
         startTime = str(self.startTime)[:19]
-        duration = str(self.stopTime - self.startTime)
+        duration = str(self.stopTime - self.startTime).split('.')[0]
         status = []
         #ip_add
         hostname = socket.gethostname()
         ip_add = socket.gethostbyname(hostname)
-        sqlAdd = self.sqlAdd["hostadd"]
-        print sqlAdd
-        strs=requests.get("http://"+sqlAdd+"/middleclient/version")
-        s=json.loads(strs.text)
+        sqlAdd = self.sqlAdd
         project_name_add=os.environ.get("PY_DEV_HOME")
         if result.success_count:
             status.append('Pass %s' % result.success_count)
@@ -706,10 +704,10 @@ class HTMLTestRunner(Template_mixin):
             ('Start Time', startTime),
             ('Duration', duration),
             ('Status', status),
-            ('ip add', ip_add),
-            ('project run name add', project_name_add),
-            ('sqlAdd',sqlAdd),
-            ('projectVersion',s['version']),
+            ('Test Execution Server', ip_add),
+            ('Project Path', project_name_add),
+            ('Test project Server',sqlAdd),
+            ('projectVersion',self.version_add),
         ]
 
     def generateReport(self, test, result):
